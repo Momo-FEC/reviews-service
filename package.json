@@ -1,0 +1,41 @@
+{
+  "name": "reviews-service",
+  "version": "1.0.0",
+  "description": "Reviews for FEC, Service",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "seedDb": "node ./database/seed.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Momo-FEC/reviews-service.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Momo-FEC/reviews-service/issues"
+  },
+  "homepage": "https://github.com/Momo-FEC/reviews-service#readme",
+  "dependencies": {
+    "@babel/core": "^7.10.2",
+    "@babel/preset-env": "^7.10.2",
+    "@babel/preset-react": "^7.10.1",
+    "babel": "^6.23.0",
+    "babel-loader": "^8.1.0",
+    "express": "^4.17.1",
+    "faker": "^4.1.0",
+    "jquery": "^3.5.1",
+    "mysql": "^2.18.1",
+    "mysql2": "^2.1.0",
+    "nodemon": "^2.0.4",
+    "react": "^16.13.1",
+    "react-dom": "^16.13.1",
+    "sequelize": "^5.21.13",
+    "sequelize-cli": "^5.5.1"
+  },
+  "devDependencies": {
+    "eslint": "^7.2.0",
+    "eslint-plugin-react": "^7.20.0"
+  }
+}
