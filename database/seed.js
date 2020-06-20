@@ -4,11 +4,9 @@ var faker = require('faker');
 const Review = require('./index.js');
 
 
-
 var addData = function() {
-  var counter = 0;
-  if (counter !== 10) {
-    Review.create({
+  Review.sync({ force: true }).then(() => {
+    return Review.create({
       user: faker.name.findName(),
       description: faker.random.words(5),
       helpfulcount: 0,
@@ -18,8 +16,17 @@ var addData = function() {
       design: Math.random() * (5 - 1) + 1,
       value: Math.random() * (5 - 1) + 1
     });
+  });
+};
+
+var adder = function() {
+  var counter = 0;
+
+  while (counter < 100) {
+    addData();
     counter++;
   }
 };
 
-addData(); 
+adder();
+

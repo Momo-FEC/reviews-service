@@ -25,7 +25,6 @@ const Review = sequelize.define('Review', {
 });
 
 
-
 sequelize
   .authenticate()
   .then(() => {
@@ -34,6 +33,7 @@ sequelize
   .catch(err => {
     console.error('Unable to connect to the database:', err);
   });
+
 
 
 module.exports = Review;
