@@ -1,6 +1,5 @@
 const Sequelize = require('sequelize');
 const Model = Sequelize.Model;
-var faker = require('faker');
 
 const sequelize = new Sequelize('samsung', 'root', 'password', {
   host: 'localhost',
