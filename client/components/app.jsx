@@ -1,12 +1,14 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import $ from 'jquery'
+import ListedReviews from './content.jsx'
 
 class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      allReviews: []
+      allReviews: [],
+      shownReviews: []
     };
   }
 
@@ -22,7 +24,9 @@ class App extends React.Component {
   render() {
     return (
       <div>
-        Hello World!
+        {this.state.allReviews.map((review) => 
+          <ListedReviews key={review.id} review={review} />
+        )}
       </div>
     );
   }
@@ -35,11 +39,11 @@ var serverCommunicator = {
       url: 'http://localhost:3006/api/reviews',
       method: 'GET',
       success: (data) => {
-        console.log('we got the reviews', data);
+        console.log('We got the reviews', data);
         return data;
       },
       error: (err) => {
-        console.log('failed to GET from server', err)
+        console.log('Failed to GET from server', err)
       }
     });
   }
