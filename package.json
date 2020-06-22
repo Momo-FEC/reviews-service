@@ -4,7 +4,7 @@
   "description": "Reviews for FEC, Service",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "test": "jest",
     "seedDb": "node ./database/seed.js"
   },
   "repository": {
@@ -36,6 +36,7 @@
   },
   "devDependencies": {
     "eslint": "^7.2.0",
-    "eslint-plugin-react": "^7.20.0"
+    "eslint-plugin-react": "^7.20.0",
+    "jest": "^26.0.1"
   }
 }
