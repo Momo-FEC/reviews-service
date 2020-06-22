@@ -7,6 +7,7 @@ const sequelize = new Sequelize('samsung', mysqlStuff.login, mysqlStuff.password
   dialect: 'mysql'
 });
 
+
 const Review = sequelize.define('Review', {
   id: {
     type: Sequelize.INTEGER,
@@ -15,6 +16,7 @@ const Review = sequelize.define('Review', {
     autoIncrement: true,
   },
   user: Sequelize.STRING,
+  shortDescription: Sequelize.STRING,
   description: Sequelize.STRING,
   helpfulcount: Sequelize.INTEGER,
   timestamp: Sequelize.DATE,
