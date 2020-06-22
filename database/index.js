@@ -1,7 +1,8 @@
 const Sequelize = require('sequelize');
 const Model = Sequelize.Model;
+const mysqlStuff = require('./config.js');
 
-const sequelize = new Sequelize('samsung', 'root', 'password', {
+const sequelize = new Sequelize('samsung', mysqlStuff.login, mysqlStuff.password, {
   host: 'localhost',
   dialect: 'mysql'
 });
