@@ -1,6 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import $ from 'jquery';
+import $, { data } from 'jquery';
 import ListedReviews from './content.jsx';
 import RatingSnapshot from './header.jsx';
 
@@ -9,8 +9,15 @@ class App extends React.Component {
     super(props);
     this.state = {
       allReviews: [],
-      shownReviews: []
+      view: 'pageOne'
     };
+    this.changeView = this.changeView.bind(this);
+  }
+  
+  changeView(option) {
+    this.setState({
+      view: option
+    });
   }
 
   componentDidMount() {
@@ -22,18 +29,91 @@ class App extends React.Component {
       });
   }
 
+  renderView() {
+    const {view} = this.state;
+
+    if (view === 'pageOne') {
+      return (
+        <div>
+          Page 1
+          {this.state.allReviews.map((review) => 
+            <ListedReviews key={review.id} review={review} view={this.state.view} />
+          )}
+        </div>
+      );
+    } else if (view === 'pageTwo') {
+      return (
+        <div>
+          Page 2
+          {this.state.allReviews.map((review) => 
+            <ListedReviews key={review.id} review={review} view={this.state.view}/>
+          )}
+        </div>
+      );
+    } else if (view === 'pageThree') {
+      return (
+        <div>
+          Page 3
+          {this.state.allReviews.map((review) => 
+            <ListedReviews key={review.id} review={review} view={this.state.view}/>
+          )}
+        </div>
+      );
+    } else if (view === 'pageFour') {
+      return (
+        <div>
+          Page 4
+          {this.state.allReviews.map((review) => 
+            <ListedReviews key={review.id} review={review} view={this.state.view}/>
+          )}
+        </div>
+      );
+    } else if (view === 'pageFive') {
+      return (
+        <div>
+          Page 5
+          {this.state.allReviews.map((review) => 
+            <ListedReviews key={review.id} review={review} view={this.state.view}/>
+          )}
+        </div>
+      );
+    }
+  }
+
   render() {
     return (   
       <div>
-        <div>
-          {this.state.allReviews.map((review) => 
-            <RatingSnapshot key={review.id} review={review} />
-          )}
+        <div className='main'>
+          {this.renderView()}
         </div>
-        <div>
-          {this.state.allReviews.map((review) => 
-            <ListedReviews key={review.id} review={review} />
-          )}
+
+        <div className='nav'>
+
+          <button className={this.state.view === 'pageOne'}
+            onClick={() => this.changeView('pageOne')}>
+              1
+          </button>
+
+          <button className={this.state.view === 'pageTwo'}
+            onClick={() => this.changeView('pageTwo')}>
+              2
+          </button>
+
+          <button className={this.state.view === 'pageThree'}
+            onClick={() => this.changeView('pageThree')}>
+              3
+          </button>
+
+          <button className={this.state.view === 'pageFour'}
+            onClick={() => this.changeView('pageFour')}>
+              4
+          </button>
+
+          <button className={this.state.view === 'pageFive'}
+            onClick={() => this.changeView('pageFive')}>
+              5
+          </button>
+
         </div>
       </div>
     );
@@ -51,7 +131,7 @@ var serverCommunicator = {
         return data;
       },
       error: (err) => {
-        console.log('Failed to GET from server', err)
+        console.log('Failed to GET from server', err);
       }
     });
   }
