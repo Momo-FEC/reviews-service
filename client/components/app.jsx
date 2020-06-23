@@ -1,7 +1,8 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import $ from 'jquery'
-import ListedReviews from './content.jsx'
+import $ from 'jquery';
+import ListedReviews from './content.jsx';
+import RatingSnapshot from './header.jsx';
 
 class App extends React.Component {
   constructor(props) {
@@ -22,11 +23,18 @@ class App extends React.Component {
   }
 
   render() {
-    return (
+    return (   
       <div>
-        {this.state.allReviews.map((review) => 
-          <ListedReviews key={review.id} review={review} />
-        )}
+        <div>
+          {this.state.allReviews.map((review) => 
+            <RatingSnapshot key={review.id} review={review} />
+          )}
+        </div>
+        <div>
+          {this.state.allReviews.map((review) => 
+            <ListedReviews key={review.id} review={review} />
+          )}
+        </div>
       </div>
     );
   }

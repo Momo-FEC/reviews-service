@@ -6,6 +6,12 @@ const Review = require('./index.js');
 var addData = function() {
   const randomWords = ['It did what it needed to.', 'I guess it is okay', 'Cool, I guess', 'iPhones are better', 'Hi mom!', 'How do I upload videos to facebook?', 'I thought this phone would fix my marriage, it did not', 'I guess this is better than my last phone', 'Good call quality I guess']
   const randomWord = randomWords[Math.floor(Math.random() * randomWords.length)];
+  const feature = Math.random() * (5 - 1) + 1;
+  const performance = Math.random() * (5 - 1) + 1;
+  const design = Math.random() * (5 - 1) + 1;
+  const value = Math.random() * (5 - 1) + 1;
+  const overall = (feature + performance + design + value) / 4;
+  console.log(overall);
   Review.sync({ force: true }).then(() => {
     return Review.create({
       user: faker.name.findName(),
@@ -13,10 +19,11 @@ var addData = function() {
       description: faker.random.words(5),
       helpfulcount: 0,
       timestamp: faker.date.recent(),
-      feature: Math.random() * (5 - 1) + 1,
-      performance: Math.random() * (5 - 1) + 1,
-      design: Math.random() * (5 - 1) + 1,
-      value: Math.random() * (5 - 1) + 1
+      feature: feature,
+      performance: performance,
+      design: design,
+      value: value,
+      overall: overall
     });
   });
 };

@@ -24,6 +24,7 @@ const Review = sequelize.define('Review', {
   performance: Sequelize.INTEGER,
   design: Sequelize.INTEGER,
   value: Sequelize.INTEGER,
+  overall: Sequelize.INTEGER
 });
 
 
