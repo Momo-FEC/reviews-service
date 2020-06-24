@@ -11,13 +11,16 @@ var addData = function() {
   const design = Math.random() * (5 - 1) + 1;
   const value = Math.random() * (5 - 1) + 1;
   const overall = (feature + performance + design + value) / 4;
+  const randomhelpful = Math.random() * (10 - 1) + 1;
+  const randomunhelpful = Math.random() * (3 - 1) + 1;
   console.log(overall);
   Review.sync({ force: true }).then(() => {
     return Review.create({
       user: faker.name.findName(),
       shortDescription: randomWord,
       description: faker.random.words(5),
-      helpfulcount: 0,
+      helpfulcount: randomhelpful,
+      unhelpfulcount: randomunhelpful,
       timestamp: faker.date.recent(),
       feature: feature,
       performance: performance,

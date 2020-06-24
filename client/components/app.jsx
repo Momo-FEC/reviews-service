@@ -1,6 +1,5 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
-import $, { data } from 'jquery';
+import $ from 'jquery';
 import ListedReviews from './content.jsx';
 import RatingSnapshot from './header.jsx';
 
@@ -35,59 +34,104 @@ class App extends React.Component {
     if (view === 'pageOne') {
       return (
         <div>
-          Page 1
+          1-20 of {this.state.allReviews.length} Reviews
           {this.state.allReviews.map((review) => 
-            <ListedReviews key={review.id} review={review} view={this.state.view} />
+            <ListedReviews key={review.id} review={review} view={this.state.view} overallRating={review.overall}/>
           )}
         </div>
       );
     } else if (view === 'pageTwo') {
       return (
         <div>
-          Page 2
+          21-40 of {this.state.allReviews.length} Reviews
           {this.state.allReviews.map((review) => 
-            <ListedReviews key={review.id} review={review} view={this.state.view}/>
+            <ListedReviews key={review.id} review={review} view={this.state.view} overallRating={review.overall}/>
           )}
         </div>
       );
     } else if (view === 'pageThree') {
       return (
         <div>
-          Page 3
+          41-60 of {this.state.allReviews.length} Reviews
           {this.state.allReviews.map((review) => 
-            <ListedReviews key={review.id} review={review} view={this.state.view}/>
+            <ListedReviews key={review.id} review={review} view={this.state.view} overallRating={review.overall}/>
           )}
         </div>
       );
     } else if (view === 'pageFour') {
       return (
         <div>
-          Page 4
+          61-80 of {this.state.allReviews.length} Reviews
           {this.state.allReviews.map((review) => 
-            <ListedReviews key={review.id} review={review} view={this.state.view}/>
+            <ListedReviews key={review.id} review={review} view={this.state.view} overallRating={review.overall}/>
           )}
         </div>
       );
     } else if (view === 'pageFive') {
       return (
         <div>
-          Page 5
+          81-100 of {this.state.allReviews.length} Reviews
           {this.state.allReviews.map((review) => 
-            <ListedReviews key={review.id} review={review} view={this.state.view}/>
+            <ListedReviews key={review.id} review={review} view={this.state.view} overallRating={review.overall}/>
           )}
         </div>
       );
     }
   }
 
+  // ratingCounter() {
+  //   var fiveStars = 0;
+  //   var fourStars = 0;
+  //   var threeStars = 0;
+  //   var twoStars = 0;
+  //   var oneStars = 0;
+
+  //   this.state.allReviews.map((review) => {
+  //     if (review.overall === 5) {
+  //       fiveStars++;
+  //     } else if (review.overall === 4) {
+  //       fourStars++;
+  //     } else if (review.overall === 3) {
+  //       threeStars++;
+  //     } else if (review.overall === 2) {
+  //       twoStars++;
+  //     } else if (review.overall === 1) {
+  //       oneStars++;
+  //     }
+  //   });
+
+  //   this.setState({
+  //     fiveStars: fiveStars,
+  //     fourStars: fourStars,
+  //     threeStars: threeStars,
+  //     twoStars: twoStars,
+  //     oneStars: oneStars
+  //   });
+
+  //   return (
+  //     <div>
+  //       <div>
+  //         {this.state.fiveStars}
+  //       </div>
+  //       <div>
+  //         {this.state.fourStars}
+  //       </div>
+  //     </div>
+  //   );
+  // }
+
   render() {
     return (   
       <div>
-        <div className='main'>
+
+        <div className='header'>
+        </div>
+
+        <div className='listedReviews'>
           {this.renderView()}
         </div>
 
-        <div className='nav'>
+        <div className='pageswitching'>
 
           <button className={this.state.view === 'pageOne'}
             onClick={() => this.changeView('pageOne')}>
@@ -128,6 +172,7 @@ var serverCommunicator = {
       method: 'GET',
       success: (data) => {
         console.log('We got the reviews', data);
+        
         return data;
       },
       error: (err) => {

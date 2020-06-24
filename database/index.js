@@ -19,6 +19,7 @@ const Review = sequelize.define('Review', {
   shortDescription: Sequelize.STRING,
   description: Sequelize.STRING,
   helpfulcount: Sequelize.INTEGER,
+  unhelpfulcount: Sequelize.INTEGER,
   timestamp: Sequelize.DATE,
   feature: Sequelize.INTEGER,
   performance: Sequelize.INTEGER,
