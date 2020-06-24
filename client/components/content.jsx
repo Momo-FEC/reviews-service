@@ -3,6 +3,7 @@ import moment from 'moment';
 import { FaStar } from 'react-icons/fa';
 
 var stars = <FaStar color={'#fece30'}/>;
+var emptystars = <FaStar color={'#cacaca'}/>;
 
 var creater = (props) => {
   if (props.overallRating === 5) {
@@ -11,19 +12,19 @@ var creater = (props) => {
     );
   } else if (props.overallRating === 4) {
     return (
-      <>{stars}{stars}{stars}{stars}</>
+      <>{stars}{stars}{stars}{stars}{emptystars}</>
     );
   } else if (props.overallRating === 3) {
     return (
-      <>{stars}{stars}{stars}</>
+      <>{stars}{stars}{stars}{emptystars}{emptystars}</>
     );
   } else if (props.overallRating === 2) {
     return (
-      <>{stars}{stars}</>
+      <>{stars}{stars}{emptystars}{emptystars}{emptystars}</>
     );
   } else if (props.overallRating === 1) {
     return (
-      <>{stars}</>
+      <>{stars}{emptystars}{emptystars}{emptystars}{emptystars}</>
     );
   }
 };
