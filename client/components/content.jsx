@@ -6,8 +6,8 @@ import { AiOutlineLine } from 'react-icons/ai';
 var stars = <FaStar color={'#fece30'}/>;
 var emptystars = <FaStar color={'#cacaca'}/>;
 
-var bars = <AiOutlineLine color={'#fece30'} size={25}/>;
-var emptybars = <AiOutlineLine color={'#cacaca'} size={25}/>;
+var bars = <AiOutlineLine color={'#fece30'} size={55} style={{margin:-6, padding:-6}}/>;
+var emptybars = <AiOutlineLine color={'#cacaca'} size={55} style={{margin:-6, padding:-6}}/>;
 
 var creater = (props) => {
   if (props.overallRating === 5) {
@@ -146,7 +146,7 @@ var ListedReviews = (props) => {
           Helpful? <button>Yes·{props.review.helpfulcount}</button> <button>No·{props.review.unhelpfulcount}</button> <button>Report</button>
         </ul>
         <div>
-          <ul>Feature <ul></ul> {featureLoader(props)}</ul>
+          <ul>Features <ul></ul> {featureLoader(props)}</ul>
           <ul>Performance <ul></ul> {performanceLoader(props)}</ul>
           <ul>Design <ul></ul> {designLoader(props)}</ul>
           <ul>Value <ul></ul> {valueLoader(props)}</ul>
@@ -169,7 +169,7 @@ var ListedReviews = (props) => {
           Helpful? <button>Yes·{props.review.helpfulcount}</button> <button>No·{props.review.unhelpfulcount}</button> <button>Report</button>
         </ul>
         <div>
-          <ul>Feature <ul></ul> {featureLoader(props)}</ul>
+          <ul>Features <ul></ul> {featureLoader(props)}</ul>
           <ul>Performance <ul></ul> {performanceLoader(props)}</ul>
           <ul>Design <ul></ul> {designLoader(props)}</ul>
           <ul>Value <ul></ul> {valueLoader(props)}</ul>
@@ -192,7 +192,7 @@ var ListedReviews = (props) => {
           Helpful? <button>Yes·{props.review.helpfulcount}</button> <button>No·{props.review.unhelpfulcount}</button> <button>Report</button>
         </ul>
         <div>
-          <ul>Feature <ul></ul> {featureLoader(props)}</ul>
+          <ul>Features <ul></ul> {featureLoader(props)}</ul>
           <ul>Performance <ul></ul> {performanceLoader(props)}</ul>
           <ul>Design <ul></ul> {designLoader(props)}</ul>
           <ul>Value <ul></ul> {valueLoader(props)}</ul>
@@ -215,7 +215,7 @@ var ListedReviews = (props) => {
           Helpful? <button>Yes·{props.review.helpfulcount}</button> <button>No·{props.review.unhelpfulcount}</button> <button>Report</button>
         </ul>
         <div>
-          <ul>Feature <ul></ul> {featureLoader(props)}</ul>
+          <ul>Features <ul></ul> {featureLoader(props)}</ul>
           <ul>Performance <ul></ul> {performanceLoader(props)}</ul>
           <ul>Design <ul></ul> {designLoader(props)}</ul>
           <ul>Value <ul></ul> {valueLoader(props)}</ul>
@@ -238,7 +238,7 @@ var ListedReviews = (props) => {
           Helpful? <button>Yes·{props.review.helpfulcount}</button> <button>No·{props.review.unhelpfulcount}</button> <button>Report</button>
         </ul>
         <div>
-          <ul>Feature <ul></ul> {featureLoader(props)}</ul>
+          <ul>Features <ul></ul> {featureLoader(props)}</ul>
           <ul>Performance <ul></ul> {performanceLoader(props)}</ul>
           <ul>Design <ul></ul> {designLoader(props)}</ul>
           <ul>Value <ul></ul> {valueLoader(props)}</ul>
