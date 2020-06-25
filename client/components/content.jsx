@@ -9,6 +9,7 @@ var emptystars = <FaStar color={'#cacaca'}/>;
 var bars = <AiOutlineLine color={'#fece30'} size={55} style={{margin:-6, padding:-6}}/>;
 var emptybars = <AiOutlineLine color={'#cacaca'} size={55} style={{margin:-6, padding:-6}}/>;
 
+
 var creater = (props) => {
   if (props.overallRating === 5) {
     return (
@@ -108,7 +109,7 @@ var designLoader = (props) => {
 var valueLoader = (props) => {
   if (props.review.value === 5) {
     return (
-      <>{bars}{bars}{bars}{bars}{bars}{bars}</>
+      <>{bars}{bars}{bars}{bars}{bars}</>
     );
   } else if (props.review.value === 4) {
     return (
@@ -130,99 +131,7 @@ var valueLoader = (props) => {
 };
 
 var ListedReviews = (props) => {
-  if (props.review.id < 20 && props.view === 'pageOne') {
-    return (
-      <ul>
-        <ul>
-          {creater(props)}
-          {props.review.user}
-          -
-          {moment(props.review.timestamp).fromNow()}
-          <div></div>
-          {props.review.shortDescription}
-          <div></div>
-          {props.review.description}
-          <div></div>
-          Helpful? <button>Yes·{props.review.helpfulcount}</button> <button>No·{props.review.unhelpfulcount}</button> <button>Report</button>
-        </ul>
-        <div>
-          <ul>Features <ul></ul> {featureLoader(props)}</ul>
-          <ul>Performance <ul></ul> {performanceLoader(props)}</ul>
-          <ul>Design <ul></ul> {designLoader(props)}</ul>
-          <ul>Value <ul></ul> {valueLoader(props)}</ul>
-        </div>
-      </ul>
-    );
-  } else if (props.review.id > 20 && props.review.id < 40 && props.view === 'pageTwo') {
-    return (
-      <ul>
-        <ul>
-          {creater(props)}
-          {props.review.user}
-          -
-          {moment(props.review.timestamp).fromNow()}
-          <div></div>
-          {props.review.shortDescription}
-          <div></div>
-          {props.review.description}
-          <div></div>
-          Helpful? <button>Yes·{props.review.helpfulcount}</button> <button>No·{props.review.unhelpfulcount}</button> <button>Report</button>
-        </ul>
-        <div>
-          <ul>Features <ul></ul> {featureLoader(props)}</ul>
-          <ul>Performance <ul></ul> {performanceLoader(props)}</ul>
-          <ul>Design <ul></ul> {designLoader(props)}</ul>
-          <ul>Value <ul></ul> {valueLoader(props)}</ul>
-        </div>
-      </ul>
-    );
-  } else if (props.review.id > 40 && props.review.id < 60 && props.view === 'pageThree') {
-    return (
-      <ul>
-        <ul>
-          {creater(props)}
-          {props.review.user}
-          -
-          {moment(props.review.timestamp).fromNow()}
-          <div></div>
-          {props.review.shortDescription}
-          <div></div>
-          {props.review.description}
-          <div></div>
-          Helpful? <button>Yes·{props.review.helpfulcount}</button> <button>No·{props.review.unhelpfulcount}</button> <button>Report</button>
-        </ul>
-        <div>
-          <ul>Features <ul></ul> {featureLoader(props)}</ul>
-          <ul>Performance <ul></ul> {performanceLoader(props)}</ul>
-          <ul>Design <ul></ul> {designLoader(props)}</ul>
-          <ul>Value <ul></ul> {valueLoader(props)}</ul>
-        </div>
-      </ul>
-    );
-  } else if (props.review.id > 60 && props.review.id < 80 && props.view === 'pageFour') {
-    return (
-      <ul>
-        <ul>
-          {creater(props)}
-          {props.review.user}
-          -
-          {moment(props.review.timestamp).fromNow()}
-          <div></div>
-          {props.review.shortDescription}
-          <div></div>
-          {props.review.description}
-          <div></div>
-          Helpful? <button>Yes·{props.review.helpfulcount}</button> <button>No·{props.review.unhelpfulcount}</button> <button>Report</button>
-        </ul>
-        <div>
-          <ul>Features <ul></ul> {featureLoader(props)}</ul>
-          <ul>Performance <ul></ul> {performanceLoader(props)}</ul>
-          <ul>Design <ul></ul> {designLoader(props)}</ul>
-          <ul>Value <ul></ul> {valueLoader(props)}</ul>
-        </div>
-      </ul>
-    );
-  } else if (props.review.id > 80 && props.review.id < 100 && props.view === 'pageFive') {
+  if (props.review.id < (props.view * 10) && props.review.id > ((props.view * 10) - 9)) {
     return (
       <ul>
         <ul>

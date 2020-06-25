@@ -2,6 +2,8 @@ import React from 'react';
 import $ from 'jquery';
 import ListedReviews from './content.jsx';
 import { FaStar } from 'react-icons/fa';
+import { AiOutlineRightSquare } from 'react-icons/ai';
+import { AiOutlineLeftSquare } from 'react-icons/ai';
 
 
 class App extends React.Component {
@@ -9,7 +11,7 @@ class App extends React.Component {
     super(props);
     this.state = {
       allReviews: [],
-      view: 'pageOne'
+      view: 1
     };
     this.changeView = this.changeView.bind(this);
   }
@@ -32,53 +34,17 @@ class App extends React.Component {
   renderView() {
     const {view} = this.state;
 
-    if (view === 'pageOne') {
-      return (
-        <div>
-          1-20 of {this.state.allReviews.length} Reviews
-          {this.state.allReviews.map((review) => 
-            <ListedReviews key={review.id} review={review} view={this.state.view} overallRating={review.overall}/>
-          )}
-        </div>
-      );
-    } else if (view === 'pageTwo') {
-      return (
-        <div>
-          21-40 of {this.state.allReviews.length} Reviews
-          {this.state.allReviews.map((review) => 
-            <ListedReviews key={review.id} review={review} view={this.state.view} overallRating={review.overall}/>
-          )}
-        </div>
-      );
-    } else if (view === 'pageThree') {
-      return (
-        <div>
-          41-60 of {this.state.allReviews.length} Reviews
-          {this.state.allReviews.map((review) => 
-            <ListedReviews key={review.id} review={review} view={this.state.view} overallRating={review.overall}/>
-          )}
-        </div>
-      );
-    } else if (view === 'pageFour') {
-      return (
-        <div>
-          61-80 of {this.state.allReviews.length} Reviews
-          {this.state.allReviews.map((review) => 
-            <ListedReviews key={review.id} review={review} view={this.state.view} overallRating={review.overall}/>
-          )}
-        </div>
-      );
-    } else if (view === 'pageFive') {
-      return (
-        <div>
-          81-100 of {this.state.allReviews.length} Reviews
-          {this.state.allReviews.map((review) => 
-            <ListedReviews key={review.id} review={review} view={this.state.view} overallRating={review.overall}/>
-          )}
-        </div>
-      );
-    }
+    return (
+      <div>
+        {(view * 10) - 9}-{view * 10} of {this.state.allReviews.length} Reviews
+        {this.state.allReviews.map((review) => 
+          <ListedReviews key={review.id} review={review} view={this.state.view} overallRating={review.overall}/>
+        )}
+      </div>
+    );
   }
+
+  
 
   render() {
   
@@ -154,6 +120,9 @@ class App extends React.Component {
 
     var stars = <FaStar size={10} color={'#000000'}/>;
 
+    var back = <AiOutlineLeftSquare size={30}/>;
+    var next = <AiOutlineRightSquare size={30}/>;
+
     return (   
       <div>
 
@@ -185,30 +154,15 @@ class App extends React.Component {
 
         <div className='pageswitching'>
 
-          <button className={this.state.view === 'pageOne'}
-            onClick={() => this.changeView('pageOne')}>
-              1
-          </button>
+          <tag className='Down Page'
+            onClick={() => this.changeView(this.state.view - 1)}>
+            {back}
+          </tag>
 
-          <button className={this.state.view === 'pageTwo'}
-            onClick={() => this.changeView('pageTwo')}>
-              2
-          </button>
-
-          <button className={this.state.view === 'pageThree'}
-            onClick={() => this.changeView('pageThree')}>
-              3
-          </button>
-
-          <button className={this.state.view === 'pageFour'}
-            onClick={() => this.changeView('pageFour')}>
-              4
-          </button>
-
-          <button className={this.state.view === 'pageFive'}
-            onClick={() => this.changeView('pageFive')}>
-              5
-          </button>
+          <tag className='Up Page'
+            onClick={() => this.changeView(this.state.view + 1)}>
+            {next}
+          </tag>
 
         </div>
       </div>
