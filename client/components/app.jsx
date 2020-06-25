@@ -84,6 +84,9 @@ class App extends React.Component {
       <div>
 
         <div className='header'>
+          {this.state.allReviews.map((review) => 
+            <RatingSnapshot key={review.id} review={review} view={this.state.view} overallRating={review.overall}/>
+          )}
         </div>
 
         <div className='listedReviews'>

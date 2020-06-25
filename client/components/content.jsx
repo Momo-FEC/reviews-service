@@ -1,9 +1,13 @@
 import React from 'react';
 import moment from 'moment';
 import { FaStar } from 'react-icons/fa';
+import { AiOutlineLine } from 'react-icons/ai';
 
 var stars = <FaStar color={'#fece30'}/>;
 var emptystars = <FaStar color={'#cacaca'}/>;
+
+var bars = <AiOutlineLine color={'#fece30'} size={25}/>;
+var emptybars = <AiOutlineLine color={'#cacaca'} size={25}/>;
 
 var creater = (props) => {
   if (props.overallRating === 5) {
@@ -29,6 +33,101 @@ var creater = (props) => {
   }
 };
 
+var featureLoader = (props) => {
+  if (props.review.feature === 5) {
+    return (
+      <>{bars}{bars}{bars}{bars}{bars}{bars}</>
+    );
+  } else if (props.review.feature === 4) {
+    return (
+      <>{bars}{bars}{bars}{bars}{emptybars}</>
+    );
+  } else if (props.review.feature === 3) {
+    return (
+      <>{bars}{bars}{bars}{emptybars}{emptybars}</>
+    );
+  } else if (props.review.feature === 2) {
+    return (
+      <>{bars}{bars}{emptybars}{emptybars}{emptybars}</>
+    );
+  } else if (props.review.feature === 1) {
+    return (
+      <>{bars}{emptybars}{emptybars}{emptybars}{emptybars}</>
+    );
+  }
+};
+
+var performanceLoader = (props) => {
+  if (props.review.performance === 5) {
+    return (
+      <>{bars}{bars}{bars}{bars}{bars}</>
+    );
+  } else if (props.review.performance === 4) {
+    return (
+      <>{bars}{bars}{bars}{bars}{emptybars}</>
+    );
+  } else if (props.review.performance === 3) {
+    return (
+      <>{bars}{bars}{bars}{emptybars}{emptybars}</>
+    );
+  } else if (props.review.performance === 2) {
+    return (
+      <>{bars}{bars}{emptybars}{emptybars}{emptybars}</>
+    );
+  } else if (props.review.performance === 1) {
+    return (
+      <>{bars}{emptybars}{emptybars}{emptybars}{emptybars}</>
+    );
+  }
+};
+
+var designLoader = (props) => {
+  if (props.review.design === 5) {
+    return (
+      <>{bars}{bars}{bars}{bars}{bars}</>
+    );
+  } else if (props.review.design === 4) {
+    return (
+      <>{bars}{bars}{bars}{bars}{emptybars}</>
+    );
+  } else if (props.review.design === 3) {
+    return (
+      <>{bars}{bars}{bars}{emptybars}{emptybars}</>
+    );
+  } else if (props.review.design === 2) {
+    return (
+      <>{bars}{bars}{emptybars}{emptybars}{emptybars}</>
+    );
+  } else if (props.review.design === 1) {
+    return (
+      <>{bars}{emptybars}{emptybars}{emptybars}{emptybars}</>
+    );
+  }
+};
+
+var valueLoader = (props) => {
+  if (props.review.value === 5) {
+    return (
+      <>{bars}{bars}{bars}{bars}{bars}{bars}</>
+    );
+  } else if (props.review.value === 4) {
+    return (
+      <>{bars}{bars}{bars}{bars}{emptybars}</>
+    );
+  } else if (props.review.value === 3) {
+    return (
+      <>{bars}{bars}{bars}{emptybars}{emptybars}</>
+    );
+  } else if (props.review.value === 2) {
+    return (
+      <>{bars}{bars}{emptybars}{emptybars}{emptybars}</>
+    );
+  } else if (props.review.value === 1) {
+    return (
+      <>{bars}{emptybars}{emptybars}{emptybars}{emptybars}</>
+    );
+  }
+};
 
 var ListedReviews = (props) => {
   if (props.review.id < 20 && props.view === 'pageOne') {
@@ -46,6 +145,12 @@ var ListedReviews = (props) => {
           <div></div>
           Helpful? <button>Yes·{props.review.helpfulcount}</button> <button>No·{props.review.unhelpfulcount}</button> <button>Report</button>
         </ul>
+        <div>
+          <ul>Feature <ul></ul> {featureLoader(props)}</ul>
+          <ul>Performance <ul></ul> {performanceLoader(props)}</ul>
+          <ul>Design <ul></ul> {designLoader(props)}</ul>
+          <ul>Value <ul></ul> {valueLoader(props)}</ul>
+        </div>
       </ul>
     );
   } else if (props.review.id > 20 && props.review.id < 40 && props.view === 'pageTwo') {
@@ -63,6 +168,12 @@ var ListedReviews = (props) => {
           <div></div>
           Helpful? <button>Yes·{props.review.helpfulcount}</button> <button>No·{props.review.unhelpfulcount}</button> <button>Report</button>
         </ul>
+        <div>
+          <ul>Feature <ul></ul> {featureLoader(props)}</ul>
+          <ul>Performance <ul></ul> {performanceLoader(props)}</ul>
+          <ul>Design <ul></ul> {designLoader(props)}</ul>
+          <ul>Value <ul></ul> {valueLoader(props)}</ul>
+        </div>
       </ul>
     );
   } else if (props.review.id > 40 && props.review.id < 60 && props.view === 'pageThree') {
@@ -80,6 +191,12 @@ var ListedReviews = (props) => {
           <div></div>
           Helpful? <button>Yes·{props.review.helpfulcount}</button> <button>No·{props.review.unhelpfulcount}</button> <button>Report</button>
         </ul>
+        <div>
+          <ul>Feature <ul></ul> {featureLoader(props)}</ul>
+          <ul>Performance <ul></ul> {performanceLoader(props)}</ul>
+          <ul>Design <ul></ul> {designLoader(props)}</ul>
+          <ul>Value <ul></ul> {valueLoader(props)}</ul>
+        </div>
       </ul>
     );
   } else if (props.review.id > 60 && props.review.id < 80 && props.view === 'pageFour') {
@@ -97,6 +214,12 @@ var ListedReviews = (props) => {
           <div></div>
           Helpful? <button>Yes·{props.review.helpfulcount}</button> <button>No·{props.review.unhelpfulcount}</button> <button>Report</button>
         </ul>
+        <div>
+          <ul>Feature <ul></ul> {featureLoader(props)}</ul>
+          <ul>Performance <ul></ul> {performanceLoader(props)}</ul>
+          <ul>Design <ul></ul> {designLoader(props)}</ul>
+          <ul>Value <ul></ul> {valueLoader(props)}</ul>
+        </div>
       </ul>
     );
   } else if (props.review.id > 80 && props.review.id < 100 && props.view === 'pageFive') {
@@ -114,6 +237,12 @@ var ListedReviews = (props) => {
           <div></div>
           Helpful? <button>Yes·{props.review.helpfulcount}</button> <button>No·{props.review.unhelpfulcount}</button> <button>Report</button>
         </ul>
+        <div>
+          <ul>Feature <ul></ul> {featureLoader(props)}</ul>
+          <ul>Performance <ul></ul> {performanceLoader(props)}</ul>
+          <ul>Design <ul></ul> {designLoader(props)}</ul>
+          <ul>Value <ul></ul> {valueLoader(props)}</ul>
+        </div>
       </ul>
     );
   } else {
