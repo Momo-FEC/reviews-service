@@ -1,6 +1,7 @@
 import React from 'react';
 import $ from 'jquery';
 import ListedReviews from './content.jsx';
+import styled from 'styled-components'
 import { FaStar } from 'react-icons/fa';
 import { AiOutlineRightSquare } from 'react-icons/ai';
 import { AiOutlineLeftSquare } from 'react-icons/ai';
@@ -53,8 +54,8 @@ class App extends React.Component {
     var backButton = <AiOutlineLeftSquare size={30}/>;
     var nextButton = <AiOutlineRightSquare size={30}/>;
 
-    var bars = <AiOutlineLine color={'#fece30'} size={55} style={{margin: -6, padding: -6}}/>;
-    var emptybars = <AiOutlineLine color={'#cacaca'} size={55} style={{margin: -6, padding: -6}}/>;
+    var bars = <AiOutlineLine color={'#fece30'} size={35} style={{margin: -6, padding: -6}}/>;
+    var emptybars = <AiOutlineLine color={'#cacaca'} size={35} style={{margin: -6, padding: -6}}/>;
 
     var fiveBars = <>{bars}{bars}{bars}{bars}{bars}</>;
     var fourBars = <>{bars}{bars}{bars}{bars}{emptybars}</>;
@@ -250,34 +251,104 @@ class App extends React.Component {
       }
     };
 
+    const Header = styled.div`
+    font-family: Arial;
+    text-align: left;
+  `;
+
+    const Title = styled.h2`
+    font-family: Arial;
+    font-size: 26px;
+    word-space: 0px;
+    text-align: Left;
+    color: #363636;
+  `;
+
+    const SmallText = styled.div`
+    font-size: 13px;
+    word-spacing: 0px
+    text-align: center;
+    color: #363636;
+  `;
+
+    const RatingSnapshot = styled.div`
+    display: inline-block;
+    width: 49%;
+    height: 150px;
+  `;
+
+    const AverageCustomerRating = styled.div`
+    display: inline-block;
+    width: 49%;
+    height: 150px;
+    vertical-align:top;
+  `;
+    
+    const IndividualAvg = styled.div`
+    display: inline-block;
+    font-size: 13px;
+    font: Arial;
+    width: 100%;
+  `;
+    
+    const AvgAligner = styled.div`
+    display: inline-block;
+    font-size: 13px;
+    font: Arial;
+    width: 32%;
+  `;
+
     return (   
       <div>
+        <Header>
+          <Title>Reviews</Title>
 
-        <div className='RatingSnapshot'>
-          5{smallerStars}{count.fiveStar}
-          <div></div>
-          4{smallerStars}{count.fourStar}
-          <div></div>
-          3{smallerStars}{count.threeStar}
-          <div></div>
-          2{smallerStars}{count.twoStar}
-          <div></div>
-          1{smallerStars}{count.oneStar}
-        </div>
+          <RatingSnapshot>
+            <SmallText>Rating Snapshot</SmallText>
 
-        <div className='AvgCustomerRatings'>
-          Overall {overallStar(count)}{count.totalAvg}
-          <br></br>Features {featureBar(count)}{count.features}
-          <br></br>Perfomance {performanceBar(count)}{count.performance}
-          <br></br>Design {designBar(count)}{count.design}
-          <br></br>Value {valueBar(count)}{count.value}
-        </div>
+            <IndividualAvg>
+              <AvgAligner>5{smallerStars}</AvgAligner><AvgAligner>{count.fiveStar}</AvgAligner>
+            </IndividualAvg>
+            
+            <IndividualAvg>
+              <AvgAligner>4{smallerStars}</AvgAligner><AvgAligner>{count.fourStar}</AvgAligner>
+            </IndividualAvg>
+
+            <IndividualAvg>
+              <AvgAligner>3{smallerStars}</AvgAligner><AvgAligner>{count.threeStar}</AvgAligner>
+            </IndividualAvg>
+
+            <IndividualAvg>
+              <AvgAligner>2{smallerStars}</AvgAligner><AvgAligner>{count.twoStar}</AvgAligner>
+            </IndividualAvg>
+
+            <IndividualAvg>
+              <AvgAligner>1{smallerStars}</AvgAligner><AvgAligner>{count.oneStar}</AvgAligner>
+            </IndividualAvg>
+
+          </RatingSnapshot>
+
+
+          <AverageCustomerRating>
+
+            <SmallText>Average Customer Ratings</SmallText>
+
+            <IndividualAvg><AvgAligner>Overall</AvgAligner><AvgAligner>{overallStar(count)}</AvgAligner> <AvgAligner>{count.totalAvg}</AvgAligner> </IndividualAvg>
+            <IndividualAvg><AvgAligner>Features</AvgAligner><AvgAligner>{featureBar(count)}</AvgAligner> <AvgAligner>{count.features}</AvgAligner> </IndividualAvg>
+            <IndividualAvg><AvgAligner>Perfomance</AvgAligner><AvgAligner>{performanceBar(count)}</AvgAligner> <AvgAligner>{count.performance}</AvgAligner> </IndividualAvg>
+            <IndividualAvg><AvgAligner>Design</AvgAligner><AvgAligner>{designBar(count)}</AvgAligner> <AvgAligner>{count.design}</AvgAligner> </IndividualAvg>
+            <IndividualAvg><AvgAligner>Value</AvgAligner><AvgAligner>{valueBar(count)}</AvgAligner> <AvgAligner>{count.value}</AvgAligner> </IndividualAvg>
+
+          </AverageCustomerRating>
+
+        </Header>
+
 
         <div className='listedReviews'>
           {this.renderListOfReviews()}
         </div>
 
-        <div className='pageswitching'>
+        {/* <div className='pageswitching'>
 
           <span className='Down Page'
             onClick={() => this.changeView(this.state.view - 1)}>
@@ -289,7 +360,7 @@ class App extends React.Component {
             {nextButton}
           </span>
 
-        </div>
+        </div> */}
       </div>
     );
   }
