@@ -4,7 +4,7 @@ import ListedReviews from './content.jsx';
 import { FaStar } from 'react-icons/fa';
 import { AiOutlineRightSquare } from 'react-icons/ai';
 import { AiOutlineLeftSquare } from 'react-icons/ai';
-
+import { AiOutlineLine } from 'react-icons/ai';
 
 class App extends React.Component {
   constructor(props) {
@@ -18,7 +18,7 @@ class App extends React.Component {
   
   changeView(option) {
     this.setState({
-      view: option
+      view: option || 1
     });
   }
 
@@ -31,7 +31,7 @@ class App extends React.Component {
       });
   }
 
-  renderView() {
+  renderListOfReviews() {
     const {view} = this.state;
 
     return (
@@ -44,9 +44,23 @@ class App extends React.Component {
     );
   }
 
-  
-
   render() {
+
+    var stars = <FaStar color={'#fece30'}/>;
+    var smallerStars = <FaStar size={10} color={'#000000'}/>;
+    var emptystars = <FaStar color={'#cacaca'}/>;
+
+    var backButton = <AiOutlineLeftSquare size={30}/>;
+    var nextButton = <AiOutlineRightSquare size={30}/>;
+
+    var bars = <AiOutlineLine color={'#fece30'} size={55} style={{margin: -6, padding: -6}}/>;
+    var emptybars = <AiOutlineLine color={'#cacaca'} size={55} style={{margin: -6, padding: -6}}/>;
+
+    var fiveBars = <>{bars}{bars}{bars}{bars}{bars}</>;
+    var fourBars = <>{bars}{bars}{bars}{bars}{emptybars}</>;
+    var threeBars = <>{bars}{bars}{bars}{emptybars}{emptybars}</>;
+    var twoBars = <>{bars}{bars}{emptybars}{emptybars}{emptybars}</>;
+    var oneBar = <>{bars}{emptybars}{emptybars}{emptybars}{emptybars}</>;
   
     var count = {
       total: 0,
@@ -63,8 +77,7 @@ class App extends React.Component {
       value: 0,
     };
 
-
-    var counter = () => {
+    var reviewAttributeCounter = () => {
       this.state.allReviews.forEach((review) => {
         if (review.overall === 5) {
           count.total += 1;
@@ -115,54 +128,166 @@ class App extends React.Component {
       count.design = count.design / this.state.allReviews.length;  
       count.value = count.value / this.state.allReviews.length;    
     };
+    reviewAttributeCounter();
 
-    counter();
-
-    var stars = <FaStar size={10} color={'#000000'}/>;
-
-    var back = <AiOutlineLeftSquare size={30}/>;
-    var next = <AiOutlineRightSquare size={30}/>;
+    var overallStar = (count) => {
+      if (count.totalAvg >= 4.01) {
+        return (
+          <>{stars}{stars}{stars}{stars}{stars}</>
+        );
+      } else if (count.totalAvg <= 4 && count.totalAvg >= 3.01) {
+        return (
+          <>{stars}{stars}{stars}{stars}{emptystars}</>
+        );
+      } else if (count.totalAvg <= 3 && count.totalAvg >= 2.01) {
+        return (
+          <>{stars}{stars}{stars}{emptystars}{emptystars}</>
+        );
+      } else if (count.totalAvg <= 2 && count.totalAvg >= 1.01) {
+        return (
+          <>{stars}{stars}{emptystars}{emptystars}{emptystars}</>
+        );
+      } else if (count.totalAvg <= 1) {
+        return (
+          <>{stars}{emptystars}{emptystars}{emptystars}{emptystars}</>
+        );
+      }
+    };
+    
+    var featureBar = (count) => {
+      if (count.features >= 4.01) {
+        return (
+          <>{fiveBars}</>
+        );
+      } else if (count.features <= 4 && count.features >= 3.01) {
+        return (
+          <>{fourBars}</>
+        );
+      } else if (count.features <= 3 && count.features >= 2.01) {
+        return (
+          <>{threeBars}</>
+        );
+      } else if (count.features <= 2 && count.features >= 1.01) {
+        return (
+          <>{twoBars}</>
+        );
+      } else if (count.features <= 1) {
+        return (
+          <>{oneBar}</>
+        );
+      }
+    };
+    
+    var performanceBar = (count) => {
+      if (count.performance >= 4.01) {
+        return (
+          <>{fiveBars}</>
+        );
+      } else if (count.performance <= 4 && count.performance >= 3.01) {
+        return (
+          <>{fourBars}</>
+        );
+      } else if (count.performance <= 3 && count.performance >= 2.01) {
+        return (
+          <>{threeBars}</>
+        );
+      } else if (count.performance <= 2 && count.performance >= 1.01) {
+        return (
+          <>{twoBars}</>
+        );
+      } else if (count.performance <= 1) {
+        return (
+          <>{oneBar}</>
+        );
+      }
+    };
+    
+    var designBar = (count) => {
+      if (count.design >= 4.01) {
+        return (
+          <>{fiveBars}</>
+        );
+      } else if (count.design <= 4 && count.design >= 3.01) {
+        return (
+          <>{fourBars}</>
+        );
+      } else if (count.design <= 3 && count.design >= 2.01) {
+        return (
+          <>{threeBars}</>
+        );
+      } else if (count.design <= 2 && count.design >= 1.01) {
+        return (
+          <>{twoBars}</>
+        );
+      } else if (count.design <= 1) {
+        return (
+          <>{oneBar}</>
+        );
+      }
+    };
+    
+    var valueBar = (count) => {
+      if (count.value >= 4.01) {
+        return (
+          <>{fiveBars}</>
+        );
+      } else if (count.value <= 4 && count.value >= 3.01) {
+        return (
+          <>{fourBars}</>
+        );
+      } else if (count.value <= 3 && count.value >= 2.01) {
+        return (
+          <>{threeBars}</>
+        );
+      } else if (count.value <= 2 && count.value >= 1.01) {
+        return (
+          <>{twoBars}</>
+        );
+      } else if (count.value <= 1) {
+        return (
+          <>{oneBar}</>
+        );
+      }
+    };
 
     return (   
       <div>
 
         <div className='RatingSnapshot'>
-          5{stars}{count.fiveStar}
+          5{smallerStars}{count.fiveStar}
           <div></div>
-          4{stars}{count.fourStar}
+          4{smallerStars}{count.fourStar}
           <div></div>
-          3{stars}{count.threeStar}
+          3{smallerStars}{count.threeStar}
           <div></div>
-          2{stars}{count.twoStar}
+          2{smallerStars}{count.twoStar}
           <div></div>
-          1{stars}{count.oneStar}
+          1{smallerStars}{count.oneStar}
         </div>
 
         <div className='AvgCustomerRatings'>
-          <ul>
-            <ul>Overall Average: {count.totalAvg}</ul>
-            <ul>Features Average: {count.features}</ul>
-            <ul>Perfomance Average: {count.performance}</ul>
-            <ul>Design Average: {count.design}</ul>
-            <ul>Value Average: {count.value}</ul>
-          </ul>
+          Overall {overallStar(count)}{count.totalAvg}
+          <br></br>Features {featureBar(count)}{count.features}
+          <br></br>Perfomance {performanceBar(count)}{count.performance}
+          <br></br>Design {designBar(count)}{count.design}
+          <br></br>Value {valueBar(count)}{count.value}
         </div>
 
         <div className='listedReviews'>
-          {this.renderView()}
+          {this.renderListOfReviews()}
         </div>
 
         <div className='pageswitching'>
 
-          <tag className='Down Page'
+          <span className='Down Page'
             onClick={() => this.changeView(this.state.view - 1)}>
-            {back}
-          </tag>
+            {backButton}
+          </span>
 
-          <tag className='Up Page'
+          <span className='Up Page'
             onClick={() => this.changeView(this.state.view + 1)}>
-            {next}
-          </tag>
+            {nextButton}
+          </span>
 
         </div>
       </div>

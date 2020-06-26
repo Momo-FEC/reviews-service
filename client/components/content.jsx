@@ -6,8 +6,14 @@ import { AiOutlineLine } from 'react-icons/ai';
 var stars = <FaStar color={'#fece30'}/>;
 var emptystars = <FaStar color={'#cacaca'}/>;
 
-var bars = <AiOutlineLine color={'#fece30'} size={55} style={{margin:-6, padding:-6}}/>;
-var emptybars = <AiOutlineLine color={'#cacaca'} size={55} style={{margin:-6, padding:-6}}/>;
+var bars = <AiOutlineLine color={'#fece30'} size={55} style={{margin: -6, padding: -6}}/>;
+var emptybars = <AiOutlineLine color={'#cacaca'} size={55} style={{margin: -6, padding: -6}}/>;
+
+var fiveBars = <>{bars}{bars}{bars}{bars}{bars}</>;
+var fourBars = <>{bars}{bars}{bars}{bars}{emptybars}</>;
+var threeBars = <>{bars}{bars}{bars}{emptybars}{emptybars}</>;
+var twoBars = <>{bars}{bars}{emptybars}{emptybars}{emptybars}</>;
+var oneBar = <>{bars}{emptybars}{emptybars}{emptybars}{emptybars}</>;
 
 
 var creater = (props) => {
@@ -37,23 +43,23 @@ var creater = (props) => {
 var featureLoader = (props) => {
   if (props.review.feature === 5) {
     return (
-      <>{bars}{bars}{bars}{bars}{bars}{bars}</>
+      <>{fiveBars}</>
     );
   } else if (props.review.feature === 4) {
     return (
-      <>{bars}{bars}{bars}{bars}{emptybars}</>
+      <>{fourBars}</>
     );
   } else if (props.review.feature === 3) {
     return (
-      <>{bars}{bars}{bars}{emptybars}{emptybars}</>
+      <>{threeBars}</>
     );
   } else if (props.review.feature === 2) {
     return (
-      <>{bars}{bars}{emptybars}{emptybars}{emptybars}</>
+      <>{twoBars}</>
     );
   } else if (props.review.feature === 1) {
     return (
-      <>{bars}{emptybars}{emptybars}{emptybars}{emptybars}</>
+      <>{oneBar}</>
     );
   }
 };
@@ -61,23 +67,23 @@ var featureLoader = (props) => {
 var performanceLoader = (props) => {
   if (props.review.performance === 5) {
     return (
-      <>{bars}{bars}{bars}{bars}{bars}</>
+      <>{fiveBars}</>
     );
   } else if (props.review.performance === 4) {
     return (
-      <>{bars}{bars}{bars}{bars}{emptybars}</>
+      <>{fourBars}</>
     );
   } else if (props.review.performance === 3) {
     return (
-      <>{bars}{bars}{bars}{emptybars}{emptybars}</>
+      <>{threeBars}</>
     );
   } else if (props.review.performance === 2) {
     return (
-      <>{bars}{bars}{emptybars}{emptybars}{emptybars}</>
+      <>{twoBars}</>
     );
   } else if (props.review.performance === 1) {
     return (
-      <>{bars}{emptybars}{emptybars}{emptybars}{emptybars}</>
+      <>{oneBar}</>
     );
   }
 };
@@ -85,23 +91,23 @@ var performanceLoader = (props) => {
 var designLoader = (props) => {
   if (props.review.design === 5) {
     return (
-      <>{bars}{bars}{bars}{bars}{bars}</>
+      <>{fiveBars}</>
     );
   } else if (props.review.design === 4) {
     return (
-      <>{bars}{bars}{bars}{bars}{emptybars}</>
+      <>{fourBars}</>
     );
   } else if (props.review.design === 3) {
     return (
-      <>{bars}{bars}{bars}{emptybars}{emptybars}</>
+      <>{threeBars}</>
     );
   } else if (props.review.design === 2) {
     return (
-      <>{bars}{bars}{emptybars}{emptybars}{emptybars}</>
+      <>{twoBars}</>
     );
   } else if (props.review.design === 1) {
     return (
-      <>{bars}{emptybars}{emptybars}{emptybars}{emptybars}</>
+      <>{oneBar}</>
     );
   }
 };
@@ -109,23 +115,23 @@ var designLoader = (props) => {
 var valueLoader = (props) => {
   if (props.review.value === 5) {
     return (
-      <>{bars}{bars}{bars}{bars}{bars}</>
+      <>{fiveBars}</>
     );
   } else if (props.review.value === 4) {
     return (
-      <>{bars}{bars}{bars}{bars}{emptybars}</>
+      <>{fourBars}</>
     );
   } else if (props.review.value === 3) {
     return (
-      <>{bars}{bars}{bars}{emptybars}{emptybars}</>
+      <>{threeBars}</>
     );
   } else if (props.review.value === 2) {
     return (
-      <>{bars}{bars}{emptybars}{emptybars}{emptybars}</>
+      <>{twoBars}</>
     );
   } else if (props.review.value === 1) {
     return (
-      <>{bars}{emptybars}{emptybars}{emptybars}{emptybars}</>
+      <>{oneBar}</>
     );
   }
 };
@@ -133,8 +139,8 @@ var valueLoader = (props) => {
 var ListedReviews = (props) => {
   if (props.review.id < (props.view * 10) && props.review.id > ((props.view * 10) - 9)) {
     return (
-      <ul>
-        <ul>
+      <div>
+        <div>
           {creater(props)}
           {props.review.user}
           -
@@ -145,14 +151,14 @@ var ListedReviews = (props) => {
           {props.review.description}
           <div></div>
           Helpful? <button>Yes·{props.review.helpfulcount}</button> <button>No·{props.review.unhelpfulcount}</button> <button>Report</button>
-        </ul>
-        <div>
-          <ul>Features <ul></ul> {featureLoader(props)}</ul>
-          <ul>Performance <ul></ul> {performanceLoader(props)}</ul>
-          <ul>Design <ul></ul> {designLoader(props)}</ul>
-          <ul>Value <ul></ul> {valueLoader(props)}</ul>
         </div>
-      </ul>
+        <div>
+          Features <br></br> {featureLoader(props)}<br></br>
+          Performance <br></br> {performanceLoader(props)}<br></br>
+          Design <br></br> {designLoader(props)}<br></br>
+          Value <br></br> {valueLoader(props)}<br></br>
+        </div>
+      </div>
     );
   } else {
     return null;
