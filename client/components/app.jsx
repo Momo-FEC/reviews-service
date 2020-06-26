@@ -1,11 +1,11 @@
 import React from 'react';
 import $ from 'jquery';
 import ListedReviews from './content.jsx';
-import styled from 'styled-components'
+import styled from 'styled-components';
 import { FaStar } from 'react-icons/fa';
 import { AiOutlineRightSquare } from 'react-icons/ai';
 import { AiOutlineLeftSquare } from 'react-icons/ai';
-import { AiOutlineLine } from 'react-icons/ai';
+import { FaMinus } from 'react-icons/fa';
 
 class App extends React.Component {
   constructor(props) {
@@ -34,10 +34,15 @@ class App extends React.Component {
 
   renderListOfReviews() {
     const {view} = this.state;
+    const SmallPageIdentifier = styled.div`
+    font-size: 13px;
+    text-align: left;
+    color: #363636;
+  `;
 
     return (
       <div>
-        {(view * 10) - 9}-{view * 10} of {this.state.allReviews.length} Reviews
+        <SmallPageIdentifier>{(view * 10) - 9}-{view * 10} of {this.state.allReviews.length} Reviews</SmallPageIdentifier>
         {this.state.allReviews.map((review) => 
           <ListedReviews key={review.id} review={review} view={this.state.view} overallRating={review.overall}/>
         )}
@@ -48,14 +53,14 @@ class App extends React.Component {
   render() {
 
     var stars = <FaStar color={'#fece30'}/>;
-    var smallerStars = <FaStar size={10} color={'#000000'}/>;
+    var smallerStars = <FaStar size={8} color={'#000000'}/>;
     var emptystars = <FaStar color={'#cacaca'}/>;
 
     var backButton = <AiOutlineLeftSquare size={30}/>;
     var nextButton = <AiOutlineRightSquare size={30}/>;
 
-    var bars = <AiOutlineLine color={'#fece30'} size={35} style={{margin: -6, padding: -6}}/>;
-    var emptybars = <AiOutlineLine color={'#cacaca'} size={35} style={{margin: -6, padding: -6}}/>;
+    var bars = <FaMinus color={'#fece30'} size={30} style={{margin: -6, padding: -6}}/>;
+    var emptybars = <FaMinus color={'#cacaca'} size={30} style={{margin: -6, padding: -6}}/>;
 
     var fiveBars = <>{bars}{bars}{bars}{bars}{bars}</>;
     var fourBars = <>{bars}{bars}{bars}{bars}{emptybars}</>;
@@ -251,6 +256,9 @@ class App extends React.Component {
       }
     };
 
+    const King = styled.div`
+  `;
+
     const Header = styled.div`
     font-family: Arial;
     text-align: left;
@@ -297,14 +305,32 @@ class App extends React.Component {
     font: Arial;
     width: 32%;
   `;
+    
+    const SkinnyAligner = styled.div`
+    display: inline-block;
+    font-size: 13px;
+    font: Arial;
+    width: 20%;
+  `;
+
+    const ListedReviews = styled.div`
+    font-family: Arial, sans-serif;
+    text-align: left;
+  `;
+
+    const Buttons = styled.div`
+    font-family: Arial, sans-serif;
+    text-align: left;
+    float: right;
+  `;
 
     return (   
-      <div>
+      <King>
         <Header>
           <Title>Reviews</Title>
 
           <RatingSnapshot>
-            <SmallText>Rating Snapshot</SmallText>
+            <SmallText>Rating Snapshot</SmallText><br></br>
 
             <IndividualAvg>
               <AvgAligner>5{smallerStars}</AvgAligner><AvgAligner>{count.fiveStar}</AvgAligner>
@@ -331,24 +357,24 @@ class App extends React.Component {
 
           <AverageCustomerRating>
 
-            <SmallText>Average Customer Ratings</SmallText>
+            <SmallText>Average Customer Ratings</SmallText><br></br>
 
-            <IndividualAvg><AvgAligner>Overall</AvgAligner><AvgAligner>{overallStar(count)}</AvgAligner> <AvgAligner>{count.totalAvg}</AvgAligner> </IndividualAvg>
-            <IndividualAvg><AvgAligner>Features</AvgAligner><AvgAligner>{featureBar(count)}</AvgAligner> <AvgAligner>{count.features}</AvgAligner> </IndividualAvg>
-            <IndividualAvg><AvgAligner>Perfomance</AvgAligner><AvgAligner>{performanceBar(count)}</AvgAligner> <AvgAligner>{count.performance}</AvgAligner> </IndividualAvg>
-            <IndividualAvg><AvgAligner>Design</AvgAligner><AvgAligner>{designBar(count)}</AvgAligner> <AvgAligner>{count.design}</AvgAligner> </IndividualAvg>
-            <IndividualAvg><AvgAligner>Value</AvgAligner><AvgAligner>{valueBar(count)}</AvgAligner> <AvgAligner>{count.value}</AvgAligner> </IndividualAvg>
+            <IndividualAvg><SkinnyAligner>Overall</SkinnyAligner><SkinnyAligner>{overallStar(count)}</SkinnyAligner> <SkinnyAligner>{count.totalAvg}</SkinnyAligner> </IndividualAvg>
+            <IndividualAvg><SkinnyAligner>Features</SkinnyAligner><SkinnyAligner>{featureBar(count)}</SkinnyAligner> <SkinnyAligner>{count.features}</SkinnyAligner> </IndividualAvg>
+            <IndividualAvg><SkinnyAligner>Perfomance</SkinnyAligner><SkinnyAligner>{performanceBar(count)}</SkinnyAligner> <SkinnyAligner>{count.performance}</SkinnyAligner> </IndividualAvg>
+            <IndividualAvg><SkinnyAligner>Design</SkinnyAligner><SkinnyAligner>{designBar(count)}</SkinnyAligner> <SkinnyAligner>{count.design}</SkinnyAligner> </IndividualAvg>
+            <IndividualAvg><SkinnyAligner>Value</SkinnyAligner><SkinnyAligner>{valueBar(count)}</SkinnyAligner> <SkinnyAligner>{count.value}</SkinnyAligner> </IndividualAvg>
 
           </AverageCustomerRating>
 
         </Header>
 
 
-        <div className='listedReviews'>
+        <ListedReviews>
           {this.renderListOfReviews()}
-        </div>
+        </ListedReviews>
 
-        {/* <div className='pageswitching'>
+        <Buttons>
 
           <span className='Down Page'
             onClick={() => this.changeView(this.state.view - 1)}>
@@ -360,8 +386,8 @@ class App extends React.Component {
             {nextButton}
           </span>
 
-        </div> */}
-      </div>
+        </Buttons>
+      </King>
     );
   }
 }

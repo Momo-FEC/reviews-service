@@ -1,10 +1,11 @@
 import React from 'react';
 import moment from 'moment';
+import styled from 'styled-components';
 import { FaStar } from 'react-icons/fa';
 import { AiOutlineLine } from 'react-icons/ai';
 
-var stars = <FaStar color={'#fece30'}/>;
-var emptystars = <FaStar color={'#cacaca'}/>;
+var stars = <FaStar color={'#fece30'} size={13}/>;
+var emptystars = <FaStar color={'#cacaca'} size={13}/>;
 
 var bars = <AiOutlineLine color={'#fece30'} size={55} style={{margin: -6, padding: -6}}/>;
 var emptybars = <AiOutlineLine color={'#cacaca'} size={55} style={{margin: -6, padding: -6}}/>;
@@ -136,29 +137,82 @@ var valueLoader = (props) => {
   }
 };
 
+const WholeBody = styled.div`
+text-align: left;
+`;
+
+const WrittenPart = styled.div`
+text-align: left;
+display: inline-block;
+width: 49%;
+height: 235px;
+`;
+
+const GraphPart = styled.div`
+text-align: left;
+display: inline-block;
+width: 49%;
+height: 235px;
+vertical-align:top;
+`;
+
+const User = styled.span`
+font-family: Arial;
+font-size: 12px;
+text-align: left;
+font-weight: bold;
+`;
+
+const ShortDescription = styled.h3`
+font-family: Arial;
+font-size: 16px;
+text-align: left;
+`;
+
+const Description = styled.p`
+font-family: Arial;
+font-size: 13px;
+text-align: left;
+`;
+
+const Date = styled.span`
+font-family: Arial;
+font-size: 13px;
+text-align: left;
+`;
+
+
+const Loaders = styled.dt`
+font-family: Arial;
+font-size: 13px;
+text-align: left;
+`;
+
 var ListedReviews = (props) => {
   if (props.review.id < (props.view * 10) && props.review.id > ((props.view * 10) - 9)) {
     return (
-      <div>
-        <div>
+      <WholeBody>
+
+        <WrittenPart>
           {creater(props)}
-          {props.review.user}
-          -
-          {moment(props.review.timestamp).fromNow()}
-          <div></div>
-          {props.review.shortDescription}
-          <div></div>
-          {props.review.description}
-          <div></div>
-          Helpful? <button>Yes·{props.review.helpfulcount}</button> <button>No·{props.review.unhelpfulcount}</button> <button>Report</button>
-        </div>
-        <div>
-          Features <br></br> {featureLoader(props)}<br></br>
-          Performance <br></br> {performanceLoader(props)}<br></br>
-          Design <br></br> {designLoader(props)}<br></br>
-          Value <br></br> {valueLoader(props)}<br></br>
-        </div>
-      </div>
+          <User>{props.review.user}</User>
+          ·
+          <Date>{moment(props.review.timestamp).fromNow()}</Date>
+          <ShortDescription>{props.review.shortDescription}</ShortDescription>
+          <Description>{props.review.description}</Description> 
+        </WrittenPart>
+
+        <GraphPart>
+          <Loaders>Features <br></br> {featureLoader(props)}</Loaders>
+          <Loaders>Performance <br></br> {performanceLoader(props)}</Loaders>
+          <Loaders>Design <br></br> {designLoader(props)}</Loaders>
+          <Loaders>Value <br></br> {valueLoader(props)}</Loaders>
+        </GraphPart>
+
+        <Description>Helpful?<button>Yes·{props.review.helpfulcount}</button> <button>No·{props.review.unhelpfulcount}</button> <button>Report</button></Description>
+
+      </WholeBody>
+      
     );
   } else {
     return null;
