@@ -257,6 +257,9 @@ class App extends React.Component {
     };
 
     const King = styled.div`
+    display: table;
+    margin-right: auto;
+    margin-left: auto;
   `;
 
     const Header = styled.div`

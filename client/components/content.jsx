@@ -3,6 +3,8 @@ import moment from 'moment';
 import styled from 'styled-components';
 import { FaStar } from 'react-icons/fa';
 import { AiOutlineLine } from 'react-icons/ai';
+import { MdCancel } from 'react-icons/md';
+import { MdCheckCircle } from 'react-icons/md';
 
 var stars = <FaStar color={'#fece30'} size={13}/>;
 var emptystars = <FaStar color={'#cacaca'} size={13}/>;
@@ -15,6 +17,21 @@ var fourBars = <>{bars}{bars}{bars}{bars}{emptybars}</>;
 var threeBars = <>{bars}{bars}{bars}{emptybars}{emptybars}</>;
 var twoBars = <>{bars}{bars}{emptybars}{emptybars}{emptybars}</>;
 var oneBar = <>{bars}{emptybars}{emptybars}{emptybars}{emptybars}</>;
+
+var yes = <MdCheckCircle size={12}/>;
+var no = <MdCancel size={12}/>;
+
+var recommender = (props) => {
+  if (props.review.recommend === "yes") {
+    return (
+      <>{yes} Yes, I do recommend this product.</>
+    );
+  } else if (props.review.recommend === "no") {
+    return (
+      <>{no}No, I do not recommend this product.</>
+    );
+  }
+};
 
 
 var creater = (props) => {
@@ -188,6 +205,12 @@ font-size: 13px;
 text-align: left;
 `;
 
+const Recommend = styled.dt`
+font-family: Arial;
+font-size: 13px;
+text-align: left;
+`;
+
 var ListedReviews = (props) => {
   if (props.review.id < (props.view * 10) && props.review.id > ((props.view * 10) - 9)) {
     return (
@@ -199,7 +222,8 @@ var ListedReviews = (props) => {
           ·
           <Date>{moment(props.review.timestamp).fromNow()}</Date>
           <ShortDescription>{props.review.shortDescription}</ShortDescription>
-          <Description>{props.review.description}</Description> 
+          <Description>{props.review.description}</Description>
+          <Recommend>{recommender(props)}</Recommend>
         </WrittenPart>
 
         <GraphPart>
