@@ -211,10 +211,24 @@ font-size: 13px;
 text-align: left;
 `;
 
-var TopPart = styled.div`
+const TopPart = styled.div`
 text-align: left;
 display: inline-block;
 width: 100%;
+`;
+
+const Buttons = styled.button`
+text-align: center;
+text: Arial;
+color: #333333;
+background-color: #EDEDED;
+margin: 0 3px 0 0;
+padding: 2px 10px 2px 10px;
+font-weight: 700;
+line-height: 19.5px;
+white-spade: nowrap;
+word-spacing: 0px;
+background-position: 0px 0px;
 `;
 
 var ListedReviews = (props) => {
@@ -243,7 +257,7 @@ var ListedReviews = (props) => {
           <Loaders>Value <br></br> {valueLoader(props)}</Loaders>
         </GraphPart>
 
-        <Description>Helpful?<button>Yes·{props.review.helpfulcount}</button> <button>No·{props.review.unhelpfulcount}</button> <button>Report</button></Description>
+        <Description>Helpful?<> </><Buttons>Yes·{props.review.helpfulcount}</Buttons> <Buttons>No·{props.review.unhelpfulcount}</Buttons> <Buttons>Report</Buttons></Description>
         <br></br><br></br><br></br>
       </WholeBody>
     );
