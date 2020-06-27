@@ -9,8 +9,8 @@ import { MdCheckCircle } from 'react-icons/md';
 var stars = <FaStar color={'#fece30'} size={13}/>;
 var emptystars = <FaStar color={'#cacaca'} size={13}/>;
 
-var bars = <AiOutlineLine color={'#fece30'} size={55} style={{margin: -6, padding: -6}}/>;
-var emptybars = <AiOutlineLine color={'#cacaca'} size={55} style={{margin: -6, padding: -6}}/>;
+var bars = <AiOutlineLine color={'#fece30'} size={75} style={{margin: -8, padding: -8}}/>;
+var emptybars = <AiOutlineLine color={'#cacaca'} size={75} style={{margin: -8, padding: -8}}/>;
 
 var fiveBars = <>{bars}{bars}{bars}{bars}{bars}</>;
 var fourBars = <>{bars}{bars}{bars}{bars}{emptybars}</>;
@@ -161,15 +161,15 @@ text-align: left;
 const WrittenPart = styled.div`
 text-align: left;
 display: inline-block;
-width: 49%;
-height: 235px;
+width: 70%;
+height: 270px;
 `;
 
 const GraphPart = styled.div`
 text-align: left;
 display: inline-block;
-width: 49%;
-height: 235px;
+width: 30%;
+height: 270px;
 vertical-align:top;
 `;
 
@@ -211,17 +211,27 @@ font-size: 13px;
 text-align: left;
 `;
 
+var TopPart = styled.div`
+text-align: left;
+display: inline-block;
+width: 100%;
+`;
+
 var ListedReviews = (props) => {
   if (props.review.id < (props.view * 10) && props.review.id > ((props.view * 10) - 9)) {
     return (
       <WholeBody>
 
-        <WrittenPart>
+        <TopPart>
           {creater(props)}
+          <> </>
           <User>{props.review.user}</User>
           ·
           <Date>{moment(props.review.timestamp).fromNow()}</Date>
           <ShortDescription>{props.review.shortDescription}</ShortDescription>
+        </TopPart>
+
+        <WrittenPart>
           <Description>{props.review.description}</Description>
           <Recommend>{recommender(props)}</Recommend>
         </WrittenPart>
@@ -234,9 +244,8 @@ var ListedReviews = (props) => {
         </GraphPart>
 
         <Description>Helpful?<button>Yes·{props.review.helpfulcount}</button> <button>No·{props.review.unhelpfulcount}</button> <button>Report</button></Description>
-
+        <br></br><br></br><br></br>
       </WholeBody>
-      
     );
   } else {
     return null;

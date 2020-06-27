@@ -42,7 +42,7 @@ class App extends React.Component {
 
     return (
       <div>
-        <SmallPageIdentifier>{(view * 10) - 9}-{view * 10} of {this.state.allReviews.length} Reviews</SmallPageIdentifier>
+        <SmallPageIdentifier>{(view * 10) - 9}-{view * 10} of {this.state.allReviews.length} Reviews</SmallPageIdentifier><br></br>
         {this.state.allReviews.map((review) => 
           <ListedReviews key={review.id} review={review} view={this.state.view} overallRating={review.overall}/>
         )}
