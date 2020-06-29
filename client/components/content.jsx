@@ -1,19 +1,37 @@
 import React from 'react';
 import moment from 'moment';
+import styled from 'styled-components';
 import { FaStar } from 'react-icons/fa';
 import { AiOutlineLine } from 'react-icons/ai';
+import { MdCancel } from 'react-icons/md';
+import { MdCheckCircle } from 'react-icons/md';
 
-var stars = <FaStar color={'#fece30'}/>;
-var emptystars = <FaStar color={'#cacaca'}/>;
+var stars = <FaStar color={'#fece30'} size={13}/>;
+var emptystars = <FaStar color={'#cacaca'} size={13}/>;
 
-var bars = <AiOutlineLine color={'#fece30'} size={55} style={{margin: -6, padding: -6}}/>;
-var emptybars = <AiOutlineLine color={'#cacaca'} size={55} style={{margin: -6, padding: -6}}/>;
+var bars = <AiOutlineLine color={'#fece30'} size={75} style={{margin: -8, padding: -8}}/>;
+var emptybars = <AiOutlineLine color={'#cacaca'} size={75} style={{margin: -8, padding: -8}}/>;
 
 var fiveBars = <>{bars}{bars}{bars}{bars}{bars}</>;
 var fourBars = <>{bars}{bars}{bars}{bars}{emptybars}</>;
 var threeBars = <>{bars}{bars}{bars}{emptybars}{emptybars}</>;
 var twoBars = <>{bars}{bars}{emptybars}{emptybars}{emptybars}</>;
 var oneBar = <>{bars}{emptybars}{emptybars}{emptybars}{emptybars}</>;
+
+var yes = <MdCheckCircle size={12}/>;
+var no = <MdCancel size={12}/>;
+
+var recommender = (props) => {
+  if (props.review.recommend === "yes") {
+    return (
+      <>{yes} Yes, I do recommend this product.</>
+    );
+  } else if (props.review.recommend === "no") {
+    return (
+      <>{no}No, I do not recommend this product.</>
+    );
+  }
+};
 
 
 var creater = (props) => {
@@ -136,29 +154,112 @@ var valueLoader = (props) => {
   }
 };
 
+const WholeBody = styled.div`
+text-align: left;
+`;
+
+const WrittenPart = styled.div`
+text-align: left;
+display: inline-block;
+width: 70%;
+height: 270px;
+`;
+
+const GraphPart = styled.div`
+text-align: left;
+display: inline-block;
+width: 30%;
+height: 270px;
+vertical-align:top;
+`;
+
+const User = styled.span`
+font-family: Arial;
+font-size: 12px;
+text-align: left;
+font-weight: bold;
+`;
+
+const ShortDescription = styled.h3`
+font-family: Arial;
+font-size: 16px;
+text-align: left;
+`;
+
+const Description = styled.p`
+font-family: Arial;
+font-size: 13px;
+text-align: left;
+`;
+
+const Date = styled.span`
+font-family: Arial;
+font-size: 13px;
+text-align: left;
+`;
+
+
+const Loaders = styled.dt`
+font-family: Arial;
+font-size: 13px;
+text-align: left;
+`;
+
+const Recommend = styled.dt`
+font-family: Arial;
+font-size: 13px;
+text-align: left;
+`;
+
+const TopPart = styled.div`
+text-align: left;
+display: inline-block;
+width: 100%;
+`;
+
+const Buttons = styled.button`
+text-align: center;
+text: Arial;
+color: #333333;
+background-color: #EDEDED;
+margin: 0 3px 0 0;
+padding: 2px 10px 2px 10px;
+font-weight: 700;
+line-height: 19.5px;
+white-spade: nowrap;
+word-spacing: 0px;
+background-position: 0px 0px;
+`;
+
 var ListedReviews = (props) => {
   if (props.review.id < (props.view * 10) && props.review.id > ((props.view * 10) - 9)) {
     return (
-      <div>
-        <div>
+      <WholeBody>
+
+        <TopPart>
           {creater(props)}
-          {props.review.user}
-          -
-          {moment(props.review.timestamp).fromNow()}
-          <div></div>
-          {props.review.shortDescription}
-          <div></div>
-          {props.review.description}
-          <div></div>
-          Helpful? <button>Yes·{props.review.helpfulcount}</button> <button>No·{props.review.unhelpfulcount}</button> <button>Report</button>
-        </div>
-        <div>
-          Features <br></br> {featureLoader(props)}<br></br>
-          Performance <br></br> {performanceLoader(props)}<br></br>
-          Design <br></br> {designLoader(props)}<br></br>
-          Value <br></br> {valueLoader(props)}<br></br>
-        </div>
-      </div>
+          <> </>
+          <User>{props.review.user}</User>
+          ·
+          <Date>{moment(props.review.timestamp).fromNow()}</Date>
+          <ShortDescription>{props.review.shortDescription}</ShortDescription>
+        </TopPart>
+
+        <WrittenPart>
+          <Description>{props.review.description}</Description>
+          <Recommend>{recommender(props)}</Recommend>
+        </WrittenPart>
+
+        <GraphPart>
+          <Loaders>Features <br></br> {featureLoader(props)}</Loaders>
+          <Loaders>Performance <br></br> {performanceLoader(props)}</Loaders>
+          <Loaders>Design <br></br> {designLoader(props)}</Loaders>
+          <Loaders>Value <br></br> {valueLoader(props)}</Loaders>
+        </GraphPart>
+
+        <Description>Helpful?<> </><Buttons>Yes·{props.review.helpfulcount}</Buttons> <Buttons>No·{props.review.unhelpfulcount}</Buttons> <Buttons>Report</Buttons></Description>
+        <br></br><br></br><br></br>
+      </WholeBody>
     );
   } else {
     return null;

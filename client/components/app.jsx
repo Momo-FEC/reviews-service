@@ -1,10 +1,11 @@
 import React from 'react';
 import $ from 'jquery';
 import ListedReviews from './content.jsx';
+import styled from 'styled-components';
 import { FaStar } from 'react-icons/fa';
 import { AiOutlineRightSquare } from 'react-icons/ai';
 import { AiOutlineLeftSquare } from 'react-icons/ai';
-import { AiOutlineLine } from 'react-icons/ai';
+import { FaMinus } from 'react-icons/fa';
 
 class App extends React.Component {
   constructor(props) {
@@ -33,10 +34,14 @@ class App extends React.Component {
 
   renderListOfReviews() {
     const {view} = this.state;
-
+    const SmallPageIdentifier = styled.div`
+    font-size: 13px;
+    text-align: left;
+    color: #363636;
+  `;
     return (
       <div>
-        {(view * 10) - 9}-{view * 10} of {this.state.allReviews.length} Reviews
+        <SmallPageIdentifier>{(view * 10) - 9}-{view * 10} of {this.state.allReviews.length} Reviews</SmallPageIdentifier><br></br>
         {this.state.allReviews.map((review) => 
           <ListedReviews key={review.id} review={review} view={this.state.view} overallRating={review.overall}/>
         )}
@@ -47,14 +52,14 @@ class App extends React.Component {
   render() {
 
     var stars = <FaStar color={'#fece30'}/>;
-    var smallerStars = <FaStar size={10} color={'#000000'}/>;
+    var smallerStars = <FaStar size={8} color={'#000000'}/>;
     var emptystars = <FaStar color={'#cacaca'}/>;
 
     var backButton = <AiOutlineLeftSquare size={30}/>;
     var nextButton = <AiOutlineRightSquare size={30}/>;
 
-    var bars = <AiOutlineLine color={'#fece30'} size={55} style={{margin: -6, padding: -6}}/>;
-    var emptybars = <AiOutlineLine color={'#cacaca'} size={55} style={{margin: -6, padding: -6}}/>;
+    var bars = <FaMinus color={'#fece30'} size={30} style={{margin: -6, padding: -6}}/>;
+    var emptybars = <FaMinus color={'#cacaca'} size={30} style={{margin: -6, padding: -6}}/>;
 
     var fiveBars = <>{bars}{bars}{bars}{bars}{bars}</>;
     var fourBars = <>{bars}{bars}{bars}{bars}{emptybars}</>;
@@ -250,34 +255,125 @@ class App extends React.Component {
       }
     };
 
+    const King = styled.div`
+  `;
+
+    const Header = styled.div`
+    font-family: Arial;
+    text-align: left;
+  `;
+
+    const Title = styled.h2`
+    font-family: Arial;
+    font-size: 26px;
+    word-space: 0px;
+    text-align: Left;
+    color: #363636;
+  `;
+
+    const SmallText = styled.div`
+    font-size: 13px;
+    word-spacing: 0px
+    text-align: center;
+    color: #363636;
+  `;
+
+    const RatingSnapshot = styled.div`
+    display: inline-block;
+    width: 49%;
+    height: 150px;
+  `;
+
+    const AverageCustomerRating = styled.div`
+    display: inline-block;
+    width: 49%;
+    height: 150px;
+    vertical-align:top;
+  `;
+    
+    const IndividualAvg = styled.div`
+    display: inline-block;
+    font-size: 13px;
+    font: Arial;
+    width: 100%;
+  `;
+    
+    const AvgAligner = styled.div`
+    display: inline-block;
+    font-size: 13px;
+    font: Arial;
+    width: 32%;
+  `;
+    
+    const SkinnyAligner = styled.div`
+    display: inline-block;
+    font-size: 13px;
+    font: Arial;
+    width: 20%;
+  `;
+
+    const ListedReviews = styled.div`
+    font-family: Arial, sans-serif;
+    text-align: left;
+  `;
+
+    const Buttons = styled.div`
+    font-family: Arial, sans-serif;
+    text-align: left;
+    float: right;
+  `;
+
     return (   
-      <div>
+      <King>
+        <Header>
+          <Title>Reviews</Title>
 
-        <div className='RatingSnapshot'>
-          5{smallerStars}{count.fiveStar}
-          <div></div>
-          4{smallerStars}{count.fourStar}
-          <div></div>
-          3{smallerStars}{count.threeStar}
-          <div></div>
-          2{smallerStars}{count.twoStar}
-          <div></div>
-          1{smallerStars}{count.oneStar}
-        </div>
+          <RatingSnapshot>
+            <SmallText>Rating Snapshot</SmallText><br></br>
 
-        <div className='AvgCustomerRatings'>
-          Overall {overallStar(count)}{count.totalAvg}
-          <br></br>Features {featureBar(count)}{count.features}
-          <br></br>Perfomance {performanceBar(count)}{count.performance}
-          <br></br>Design {designBar(count)}{count.design}
-          <br></br>Value {valueBar(count)}{count.value}
-        </div>
+            <IndividualAvg>
+              <AvgAligner>5<> </>{smallerStars}</AvgAligner><AvgAligner>{count.fiveStar}</AvgAligner>
+            </IndividualAvg>
+            
+            <IndividualAvg>
+              <AvgAligner>4<> </>{smallerStars}</AvgAligner><AvgAligner>{count.fourStar}</AvgAligner>
+            </IndividualAvg>
 
-        <div className='listedReviews'>
+            <IndividualAvg>
+              <AvgAligner>3<> </>{smallerStars}</AvgAligner><AvgAligner>{count.threeStar}</AvgAligner>
+            </IndividualAvg>
+
+            <IndividualAvg>
+              <AvgAligner>2<> </>{smallerStars}</AvgAligner><AvgAligner>{count.twoStar}</AvgAligner>
+            </IndividualAvg>
+
+            <IndividualAvg>
+              <AvgAligner>1<> </>{smallerStars}</AvgAligner><AvgAligner>{count.oneStar}</AvgAligner>
+            </IndividualAvg>
+
+          </RatingSnapshot>
+
+
+          <AverageCustomerRating>
+
+            <SmallText>Average Customer Ratings</SmallText><br></br>
+
+            <IndividualAvg><SkinnyAligner>Overall</SkinnyAligner><SkinnyAligner>{overallStar(count)}</SkinnyAligner> <SkinnyAligner>{count.totalAvg}</SkinnyAligner> </IndividualAvg>
+            <IndividualAvg><SkinnyAligner>Features</SkinnyAligner><SkinnyAligner>{featureBar(count)}</SkinnyAligner> <SkinnyAligner>{count.features}</SkinnyAligner> </IndividualAvg>
+            <IndividualAvg><SkinnyAligner>Perfomance</SkinnyAligner><SkinnyAligner>{performanceBar(count)}</SkinnyAligner> <SkinnyAligner>{count.performance}</SkinnyAligner> </IndividualAvg>
+            <IndividualAvg><SkinnyAligner>Design</SkinnyAligner><SkinnyAligner>{designBar(count)}</SkinnyAligner> <SkinnyAligner>{count.design}</SkinnyAligner> </IndividualAvg>
+            <IndividualAvg><SkinnyAligner>Value</SkinnyAligner><SkinnyAligner>{valueBar(count)}</SkinnyAligner> <SkinnyAligner>{count.value}</SkinnyAligner> </IndividualAvg>
+
+          </AverageCustomerRating>
+
+        </Header>
+
+
+        <ListedReviews>
           {this.renderListOfReviews()}
-        </div>
+        </ListedReviews>
 
-        <div className='pageswitching'>
+        <Buttons>
 
           <span className='Down Page'
             onClick={() => this.changeView(this.state.view - 1)}>
@@ -289,8 +385,8 @@ class App extends React.Component {
             {nextButton}
           </span>
 
-        </div>
-      </div>
+        </Buttons>
+      </King>
     );
   }
 }
