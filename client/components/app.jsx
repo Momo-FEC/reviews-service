@@ -39,7 +39,6 @@ class App extends React.Component {
     text-align: left;
     color: #363636;
   `;
-
     return (
       <div>
         <SmallPageIdentifier>{(view * 10) - 9}-{view * 10} of {this.state.allReviews.length} Reviews</SmallPageIdentifier><br></br>
@@ -257,9 +256,6 @@ class App extends React.Component {
     };
 
     const King = styled.div`
-    display: table;
-    margin-right: auto;
-    margin-left: auto;
   `;
 
     const Header = styled.div`
@@ -336,23 +332,23 @@ class App extends React.Component {
             <SmallText>Rating Snapshot</SmallText><br></br>
 
             <IndividualAvg>
-              <AvgAligner>5{smallerStars}</AvgAligner><AvgAligner>{count.fiveStar}</AvgAligner>
+              <AvgAligner>5<> </>{smallerStars}</AvgAligner><AvgAligner>{count.fiveStar}</AvgAligner>
             </IndividualAvg>
             
             <IndividualAvg>
-              <AvgAligner>4{smallerStars}</AvgAligner><AvgAligner>{count.fourStar}</AvgAligner>
+              <AvgAligner>4<> </>{smallerStars}</AvgAligner><AvgAligner>{count.fourStar}</AvgAligner>
             </IndividualAvg>
 
             <IndividualAvg>
-              <AvgAligner>3{smallerStars}</AvgAligner><AvgAligner>{count.threeStar}</AvgAligner>
+              <AvgAligner>3<> </>{smallerStars}</AvgAligner><AvgAligner>{count.threeStar}</AvgAligner>
             </IndividualAvg>
 
             <IndividualAvg>
-              <AvgAligner>2{smallerStars}</AvgAligner><AvgAligner>{count.twoStar}</AvgAligner>
+              <AvgAligner>2<> </>{smallerStars}</AvgAligner><AvgAligner>{count.twoStar}</AvgAligner>
             </IndividualAvg>
 
             <IndividualAvg>
-              <AvgAligner>1{smallerStars}</AvgAligner><AvgAligner>{count.oneStar}</AvgAligner>
+              <AvgAligner>1<> </>{smallerStars}</AvgAligner><AvgAligner>{count.oneStar}</AvgAligner>
             </IndividualAvg>
 
           </RatingSnapshot>
