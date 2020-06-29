@@ -232,10 +232,9 @@ background-position: 0px 0px;
 `;
 
 var ListedReviews = (props) => {
-  if (props.review.id < (props.view * 10) && props.review.id > ((props.view * 10) - 9)) {
+  if ((props.index >= (props.view * 5) - 4) && props.index <= (props.view * 5)) {
     return (
       <WholeBody>
-
         <TopPart>
           {creater(props)}
           <> </>

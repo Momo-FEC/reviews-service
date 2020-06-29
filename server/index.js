@@ -8,11 +8,14 @@ const Review = require('../database/index.js');
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended:false}));
-app.use(express.static(path.join(__dirname, '/../dist')));
+app.use('/:id', express.static(path.join(__dirname, '/../dist')));
 
+app.get('/', (req, res) => {
+  res.redirect('/1');
+});
 
-app.get('/api/reviews', (req, res) => {
-  Review.findAll().then(review => {
+app.get('/api/reviews/:id', (req, res) => {
+  Review.findAll({ where: { phoneId: req.params.id }}).then(review => {
     res.send(review);
   });
 });

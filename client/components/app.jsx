@@ -7,6 +7,23 @@ import { AiOutlineRightSquare } from 'react-icons/ai';
 import { AiOutlineLeftSquare } from 'react-icons/ai';
 import { FaMinus } from 'react-icons/fa';
 
+var serverCommunicator = {
+  getReviews: () => {
+    console.log('getReviews was invoked...');
+    return $.ajax({
+      url: `http://localhost:3006/api/reviews${window.location.pathname}`,
+      method: 'GET',
+      success: (data) => {
+        console.log('We got the reviews', data);   
+        return data;
+      },
+      error: (err) => {
+        console.log('Failed to GET from server', err);
+      }
+    });
+  }
+};
+
 class App extends React.Component {
   constructor(props) {
     super(props);
@@ -41,9 +58,9 @@ class App extends React.Component {
   `;
     return (
       <div>
-        <SmallPageIdentifier>{(view * 10) - 9}-{view * 10} of {this.state.allReviews.length} Reviews</SmallPageIdentifier><br></br>
-        {this.state.allReviews.map((review) => 
-          <ListedReviews key={review.id} review={review} view={this.state.view} overallRating={review.overall}/>
+        <SmallPageIdentifier>{(view * 5) - 4}-{view * 5} of {this.state.allReviews.length} Reviews</SmallPageIdentifier><br></br>
+        {this.state.allReviews.map((review, index) => 
+          <ListedReviews key={index} index={index} review={review} view={this.state.view} overallRating={review.overall} length={this.state.allReviews.length}/>
         )}
       </div>
     );
@@ -391,23 +408,7 @@ class App extends React.Component {
   }
 }
 
-var serverCommunicator = {
-  getReviews: () => {
-    console.log('getReviews was invoked...');
-    return $.ajax({
-      url: 'http://localhost:3006/api/reviews',
-      method: 'GET',
-      success: (data) => {
-        console.log('We got the reviews', data);
-        
-        return data;
-      },
-      error: (err) => {
-        console.log('Failed to GET from server', err);
-      }
-    });
-  }
-};
+
 
 export default App;
 

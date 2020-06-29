@@ -15,6 +15,7 @@ const Review = sequelize.define('Review', {
     allowNull: false,
     autoIncrement: true,
   },
+  phoneId: Sequelize.INTEGER,
   user: Sequelize.STRING,
   shortDescription: Sequelize.STRING,
   description: Sequelize.STRING,
