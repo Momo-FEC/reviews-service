@@ -11,7 +11,7 @@ var serverCommunicator = {
   getReviews: () => {
     console.log('getReviews was invoked...');
     return $.ajax({
-      url: `http://localhost:3006/api/reviews${window.location.pathname}`,
+      url: `http://127.0.0.1:3006/api/reviews${window.location.pathname}`,
       method: 'GET',
       success: (data) => {
         console.log('We got the reviews', data);   

@@ -4,8 +4,10 @@ const port = 3006;
 const bodyParser = require('body-parser');
 const path = require('path');
 const Review = require('../database/index.js');
+const cors = require('cors');
 
 
+app.use(cors());
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended:false}));
 app.use('/:id', express.static(path.join(__dirname, '/../dist')));
@@ -20,6 +22,6 @@ app.get('/api/reviews/:id', (req, res) => {
   });
 });
 
-app.listen(port, () => console.log(`Listening at http://localhost:${port}`));
+app.listen(port, () => console.log(`Listening at ${port}`));
 
 module.exports = app;
