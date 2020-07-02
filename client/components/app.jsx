@@ -57,7 +57,7 @@ class App extends React.Component {
     color: #363636;
   `;
     return (
-      <div>
+      <div><br></br>
         <SmallPageIdentifier>{(view * 5) - 4}-{view * 5} of {this.state.allReviews.length} Reviews</SmallPageIdentifier><br></br>
         {this.state.allReviews.map((review, index) => 
           <ListedReviews key={index} index={index} review={review} view={this.state.view} overallRating={review.overall} length={this.state.allReviews.length}/>
@@ -153,23 +153,23 @@ class App extends React.Component {
     reviewAttributeCounter();
 
     var overallStar = (count) => {
-      if (count.totalAvg >= 4.01) {
+      if (count.totalAvg >= 4.51) {
         return (
           <>{stars}{stars}{stars}{stars}{stars}</>
         );
-      } else if (count.totalAvg <= 4 && count.totalAvg >= 3.01) {
+      } else if (count.totalAvg <= 4.5 && count.totalAvg >= 3.51) {
         return (
           <>{stars}{stars}{stars}{stars}{emptystars}</>
         );
-      } else if (count.totalAvg <= 3 && count.totalAvg >= 2.01) {
+      } else if (count.totalAvg <= 3.5 && count.totalAvg >= 2.51) {
         return (
           <>{stars}{stars}{stars}{emptystars}{emptystars}</>
         );
-      } else if (count.totalAvg <= 2 && count.totalAvg >= 1.01) {
+      } else if (count.totalAvg <= 2.5 && count.totalAvg >= 1.51) {
         return (
           <>{stars}{stars}{emptystars}{emptystars}{emptystars}</>
         );
-      } else if (count.totalAvg <= 1) {
+      } else if (count.totalAvg <= 1.5) {
         return (
           <>{stars}{emptystars}{emptystars}{emptystars}{emptystars}</>
         );
@@ -177,23 +177,23 @@ class App extends React.Component {
     };
     
     var featureBar = (count) => {
-      if (count.features >= 4.01) {
+      if (count.features >= 4.51) {
         return (
           <>{fiveBars}</>
         );
-      } else if (count.features <= 4 && count.features >= 3.01) {
+      } else if (count.features <= 4.5 && count.features >= 3.51) {
         return (
           <>{fourBars}</>
         );
-      } else if (count.features <= 3 && count.features >= 2.01) {
+      } else if (count.features <= 3.5 && count.features >= 2.51) {
         return (
           <>{threeBars}</>
         );
-      } else if (count.features <= 2 && count.features >= 1.01) {
+      } else if (count.features <= 2.5 && count.features >= 1.51) {
         return (
           <>{twoBars}</>
         );
-      } else if (count.features <= 1) {
+      } else if (count.features <= 1.5) {
         return (
           <>{oneBar}</>
         );
@@ -201,23 +201,23 @@ class App extends React.Component {
     };
     
     var performanceBar = (count) => {
-      if (count.performance >= 4.01) {
+      if (count.performance >= 4.51) {
         return (
           <>{fiveBars}</>
         );
-      } else if (count.performance <= 4 && count.performance >= 3.01) {
+      } else if (count.performance <= 4.5 && count.performance >= 3.51) {
         return (
           <>{fourBars}</>
         );
-      } else if (count.performance <= 3 && count.performance >= 2.01) {
+      } else if (count.performance <= 3.5 && count.performance >= 2.51) {
         return (
           <>{threeBars}</>
         );
-      } else if (count.performance <= 2 && count.performance >= 1.01) {
+      } else if (count.performance <= 2.5 && count.performance >= 1.51) {
         return (
           <>{twoBars}</>
         );
-      } else if (count.performance <= 1) {
+      } else if (count.performance <= 1.5) {
         return (
           <>{oneBar}</>
         );
@@ -225,23 +225,23 @@ class App extends React.Component {
     };
     
     var designBar = (count) => {
-      if (count.design >= 4.01) {
+      if (count.design >= 4.51) {
         return (
           <>{fiveBars}</>
         );
-      } else if (count.design <= 4 && count.design >= 3.01) {
+      } else if (count.design <= 4.5 && count.design >= 3.51) {
         return (
           <>{fourBars}</>
         );
-      } else if (count.design <= 3 && count.design >= 2.01) {
+      } else if (count.design <= 3.5 && count.design >= 2.51) {
         return (
           <>{threeBars}</>
         );
-      } else if (count.design <= 2 && count.design >= 1.01) {
+      } else if (count.design <= 2.5 && count.design >= 1.51) {
         return (
           <>{twoBars}</>
         );
-      } else if (count.design <= 1) {
+      } else if (count.design <= 1.5) {
         return (
           <>{oneBar}</>
         );
@@ -249,29 +249,51 @@ class App extends React.Component {
     };
     
     var valueBar = (count) => {
-      if (count.value >= 4.01) {
+      if (count.value >= 4.51) {
         return (
           <>{fiveBars}</>
         );
-      } else if (count.value <= 4 && count.value >= 3.01) {
+      } else if (count.value <= 4.5 && count.value >= 3.51) {
         return (
           <>{fourBars}</>
         );
-      } else if (count.value <= 3 && count.value >= 2.01) {
+      } else if (count.value <= 3.5 && count.value >= 2.51) {
         return (
           <>{threeBars}</>
         );
-      } else if (count.value <= 2 && count.value >= 1.01) {
+      } else if (count.value <= 2.5 && count.value >= 1.51) {
         return (
           <>{twoBars}</>
         );
-      } else if (count.value <= 1) {
+      } else if (count.value <= 1.5) {
         return (
           <>{oneBar}</>
         );
       }
     };
 
+    const Line = styled(({ className, count, total }) => {
+      return (
+        <div className={className}>
+          <Bar fill={true} width={(((count / total) * 200)).toString() + '%'}/>
+          <Bar fill={false} width={(65 - ((count / total) * 200)).toString() + '%'}/>
+        </div>
+      );
+    })`
+      height: 25px;
+      font-size: 13px;
+    `;
+
+    const Bar = styled.div`
+    display: inline-block;
+    position: relative;
+    top: 2px;
+    height: 8px;
+    width: ${props => props.width};
+    background-color: ${props => props.fill ? '#FECE30' : '#CACACA'};
+    left: 15%;
+  `;
+    
     const King = styled.div`
   `;
 
@@ -314,12 +336,12 @@ class App extends React.Component {
     font: Arial;
     width: 100%;
   `;
-    
-    const AvgAligner = styled.div`
+
+    const MiddleAligner = styled.div`
     display: inline-block;
     font-size: 13px;
     font: Arial;
-    width: 32%;
+    width: 30%;
   `;
     
     const SkinnyAligner = styled.div`
@@ -327,6 +349,13 @@ class App extends React.Component {
     font-size: 13px;
     font: Arial;
     width: 20%;
+  `;
+
+    const SuperSkinnyAligner = styled.div`
+    display: inline-block;
+    font-size: 13px;
+    font: Arial;
+    width: 5%;
   `;
 
     const ListedReviews = styled.div`
@@ -349,23 +378,23 @@ class App extends React.Component {
             <SmallText>Rating Snapshot</SmallText><br></br>
 
             <IndividualAvg>
-              <AvgAligner>5<> </>{smallerStars}</AvgAligner><AvgAligner>{count.fiveStar}</AvgAligner>
+              <SuperSkinnyAligner>5 <></>{smallerStars}</SuperSkinnyAligner> <MiddleAligner><Line count ={count.fiveStar} total={count.totalNumber}/></MiddleAligner> <SuperSkinnyAligner>{count.fiveStar}</SuperSkinnyAligner>
             </IndividualAvg>
             
             <IndividualAvg>
-              <AvgAligner>4<> </>{smallerStars}</AvgAligner><AvgAligner>{count.fourStar}</AvgAligner>
+              <SuperSkinnyAligner>4 <></>{smallerStars}</SuperSkinnyAligner> <MiddleAligner><Line count ={count.fourStar} total={count.totalNumber}/></MiddleAligner> <SuperSkinnyAligner>{count.fourStar}</SuperSkinnyAligner>
             </IndividualAvg>
 
             <IndividualAvg>
-              <AvgAligner>3<> </>{smallerStars}</AvgAligner><AvgAligner>{count.threeStar}</AvgAligner>
+              <SuperSkinnyAligner>3 <></>{smallerStars}</SuperSkinnyAligner> <MiddleAligner><Line count ={count.threeStar} total={count.totalNumber}/></MiddleAligner> <SuperSkinnyAligner>{count.threeStar}</SuperSkinnyAligner>
             </IndividualAvg>
 
             <IndividualAvg>
-              <AvgAligner>2<> </>{smallerStars}</AvgAligner><AvgAligner>{count.twoStar}</AvgAligner>
+              <SuperSkinnyAligner>2 <></>{smallerStars}</SuperSkinnyAligner> <MiddleAligner><Line count ={count.twoStar} total={count.totalNumber}/></MiddleAligner> <SuperSkinnyAligner>{count.twoStar}</SuperSkinnyAligner>
             </IndividualAvg>
 
             <IndividualAvg>
-              <AvgAligner>1<> </>{smallerStars}</AvgAligner><AvgAligner>{count.oneStar}</AvgAligner>
+              <SuperSkinnyAligner>1 <></>{smallerStars}</SuperSkinnyAligner> <MiddleAligner><Line count ={count.oneStar} total={count.totalNumber}/></MiddleAligner> <SuperSkinnyAligner>{count.oneStar}</SuperSkinnyAligner>
             </IndividualAvg>
 
           </RatingSnapshot>
@@ -375,11 +404,11 @@ class App extends React.Component {
 
             <SmallText>Average Customer Ratings</SmallText><br></br>
 
-            <IndividualAvg><SkinnyAligner>Overall</SkinnyAligner><SkinnyAligner>{overallStar(count)}</SkinnyAligner> <SkinnyAligner>{count.totalAvg}</SkinnyAligner> </IndividualAvg>
-            <IndividualAvg><SkinnyAligner>Features</SkinnyAligner><SkinnyAligner>{featureBar(count)}</SkinnyAligner> <SkinnyAligner>{count.features}</SkinnyAligner> </IndividualAvg>
-            <IndividualAvg><SkinnyAligner>Perfomance</SkinnyAligner><SkinnyAligner>{performanceBar(count)}</SkinnyAligner> <SkinnyAligner>{count.performance}</SkinnyAligner> </IndividualAvg>
-            <IndividualAvg><SkinnyAligner>Design</SkinnyAligner><SkinnyAligner>{designBar(count)}</SkinnyAligner> <SkinnyAligner>{count.design}</SkinnyAligner> </IndividualAvg>
-            <IndividualAvg><SkinnyAligner>Value</SkinnyAligner><SkinnyAligner>{valueBar(count)}</SkinnyAligner> <SkinnyAligner>{count.value}</SkinnyAligner> </IndividualAvg>
+            <IndividualAvg><SkinnyAligner>Overall</SkinnyAligner><SkinnyAligner>{overallStar(count)}</SkinnyAligner> <SkinnyAligner>{Math.round(count.totalAvg * 10) / 10}</SkinnyAligner> </IndividualAvg>
+            <IndividualAvg><SkinnyAligner>Features</SkinnyAligner><SkinnyAligner>{featureBar(count)}</SkinnyAligner> <SkinnyAligner>{Math.round(count.features * 10) / 10}</SkinnyAligner> </IndividualAvg>
+            <IndividualAvg><SkinnyAligner>Perfomance</SkinnyAligner><SkinnyAligner>{performanceBar(count)}</SkinnyAligner> <SkinnyAligner>{Math.round(count.performance * 10) / 10}</SkinnyAligner> </IndividualAvg>
+            <IndividualAvg><SkinnyAligner>Design</SkinnyAligner><SkinnyAligner>{designBar(count)}</SkinnyAligner> <SkinnyAligner>{Math.round(count.design * 10) / 10}</SkinnyAligner> </IndividualAvg>
+            <IndividualAvg><SkinnyAligner>Value</SkinnyAligner><SkinnyAligner>{valueBar(count)}</SkinnyAligner> <SkinnyAligner>{Math.round(count.value * 10) / 10}</SkinnyAligner> </IndividualAvg>
 
           </AverageCustomerRating>
 
