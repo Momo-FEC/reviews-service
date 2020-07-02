@@ -275,8 +275,8 @@ class App extends React.Component {
     const Line = styled(({ className, count, total }) => {
       return (
         <div className={className}>
-          <Bar fill={true} width={(((count / total) * 200)).toString() + '%'}/>
-          <Bar fill={false} width={(65 - ((count / total) * 200)).toString() + '%'}/>
+          <Bar fill={true} width={((count / total) * 100).toString() + '%'}/>
+          <Bar fill={false} width={(80 - ((count / total) * 100)).toString() + '%'}/>
         </div>
       );
     })`
@@ -378,23 +378,23 @@ class App extends React.Component {
             <SmallText>Rating Snapshot</SmallText><br></br>
 
             <IndividualAvg>
-              <SuperSkinnyAligner>5 <></>{smallerStars}</SuperSkinnyAligner> <MiddleAligner><Line count ={count.fiveStar} total={count.totalNumber}/></MiddleAligner> <SuperSkinnyAligner>{count.fiveStar}</SuperSkinnyAligner>
+              <SuperSkinnyAligner>5 <></>{smallerStars}</SuperSkinnyAligner> <MiddleAligner><Line count ={count.fiveStar} total={count.total}/></MiddleAligner> <SuperSkinnyAligner>{count.fiveStar}</SuperSkinnyAligner>
             </IndividualAvg>
             
             <IndividualAvg>
-              <SuperSkinnyAligner>4 <></>{smallerStars}</SuperSkinnyAligner> <MiddleAligner><Line count ={count.fourStar} total={count.totalNumber}/></MiddleAligner> <SuperSkinnyAligner>{count.fourStar}</SuperSkinnyAligner>
+              <SuperSkinnyAligner>4 <></>{smallerStars}</SuperSkinnyAligner> <MiddleAligner><Line count ={count.fourStar} total={count.total}/></MiddleAligner> <SuperSkinnyAligner>{count.fourStar}</SuperSkinnyAligner>
             </IndividualAvg>
 
             <IndividualAvg>
-              <SuperSkinnyAligner>3 <></>{smallerStars}</SuperSkinnyAligner> <MiddleAligner><Line count ={count.threeStar} total={count.totalNumber}/></MiddleAligner> <SuperSkinnyAligner>{count.threeStar}</SuperSkinnyAligner>
+              <SuperSkinnyAligner>3 <></>{smallerStars}</SuperSkinnyAligner> <MiddleAligner><Line count ={count.threeStar} total={count.total}/></MiddleAligner> <SuperSkinnyAligner>{count.threeStar}</SuperSkinnyAligner>
             </IndividualAvg>
 
             <IndividualAvg>
-              <SuperSkinnyAligner>2 <></>{smallerStars}</SuperSkinnyAligner> <MiddleAligner><Line count ={count.twoStar} total={count.totalNumber}/></MiddleAligner> <SuperSkinnyAligner>{count.twoStar}</SuperSkinnyAligner>
+              <SuperSkinnyAligner>2 <></>{smallerStars}</SuperSkinnyAligner> <MiddleAligner><Line count ={count.twoStar} total={count.total}/></MiddleAligner> <SuperSkinnyAligner>{count.twoStar}</SuperSkinnyAligner>
             </IndividualAvg>
 
             <IndividualAvg>
-              <SuperSkinnyAligner>1 <></>{smallerStars}</SuperSkinnyAligner> <MiddleAligner><Line count ={count.oneStar} total={count.totalNumber}/></MiddleAligner> <SuperSkinnyAligner>{count.oneStar}</SuperSkinnyAligner>
+              <SuperSkinnyAligner>1 <></>{smallerStars}</SuperSkinnyAligner> <MiddleAligner><Line count ={count.oneStar} total={count.total}/></MiddleAligner> <SuperSkinnyAligner>{count.oneStar}</SuperSkinnyAligner>
             </IndividualAvg>
 
           </RatingSnapshot>
