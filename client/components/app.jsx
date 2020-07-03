@@ -275,8 +275,8 @@ class App extends React.Component {
     const Line = styled(({ className, count, total }) => {
       return (
         <div className={className}>
-          <Bar fill={true} width={((count / total) * 100).toString() + '%'}/>
-          <Bar fill={false} width={(80 - ((count / total) * 100)).toString() + '%'}/>
+          <Bar fill={true} width={((count / total) * 75).toString() + '%'}/>
+          <Bar fill={false} width={(((total - count) / total * 75)).toString() + '%'}/>
         </div>
       );
     })`
